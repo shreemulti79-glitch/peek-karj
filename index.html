@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>पीक कर्ज अर्ज 2026-2027</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:20px;
+    background:#eeeeee;
+    font-family:"Noto Sans Devanagari","Mangal",Arial,sans-serif;
+    color:#111;
+}
+
+.page{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto 20px auto;
+    background:white;
+    padding:12mm;
+    box-shadow:0 0 8px #999;
+    position:relative;
+}
+
+h1{
+    text-align:center;
+    font-size:25px;
+    margin:0;
+}
+
+h2{
+    text-align:center;
+    font-size:18px;
+    margin:4px 0;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #000;
+    padding-bottom:5px;
+}
+
+.left-top{
+    font-weight:bold;
+    font-size:14px;
+}
+
+.right-top{
+    font-size:14px;
+}
+
+.center{
+    text-align:center;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin:7px 0;
+}
+
+.row label{
+    white-space:nowrap;
+    font-weight:bold;
+}
+
+input, textarea, select{
+    border:0;
+    border-bottom:1px solid #000;
+    outline:none;
+    font-size:15px;
+    padding:3px;
+    background:#fff;
+    font-family:inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    background:#fffde7;
+}
+
+.full{
+    width:100%;
+}
+
+.medium{
+    width:180px;
+}
+
+.small{
+    width:90px;
+}
+
+.large{
+    width:280px;
+}
+
+.boxes{
+    display:flex;
+    gap:10px;
+    margin-left:auto;
+}
+
+.box{
+    width:42px;
+    height:42px;
+    border:1px solid #000;
+}
+
+.section{
+    margin-top:12px;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+.address{
+    display:grid;
+    grid-template-columns:80px 1fr 80px 1fr 70px 1fr;
+    gap:5px;
+    align-items:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:8px;
+}
+
+th,td{
+    border:1px solid #000;
+    padding:7px;
+    text-align:center;
+    height:38px;
+}
+
+th{
+    font-weight:bold;
+}
+
+table input{
+    width:100%;
+    border:0;
+    text-align:center;
+}
+
+.note{
+    font-size:13px;
+}
+
+button{
+    border:0;
+    padding:12px 20px;
+    margin:5px;
+    border-radius:6px;
+    background:#1976d2;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.buttons{
+    text-align:center;
+    margin:20px;
+}
+
+@media(max-width:800px){
+
+    body{
+        padding:5px;
+    }
+
+    .page{
+        width:100%;
+        min-height:auto;
+        padding:15px;
+    }
+
+    .address{
+        grid-template-columns:1fr 2fr;
+    }
+
+    .row{
+        flex-wrap:wrap;
+    }
+
+}
+
+@media print{
+
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .page{
+        width:210mm;
+        height:297mm;
+        min-height:297mm;
+        margin:0;
+        padding:12mm;
+        box-shadow:none;
+        page-break-after:always;
+    }
+
+    .buttons{
+        display:none;
+    }
+
+    input, textarea, select{
+        background:white !important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <div class="top">
+
+        <div class="left-top">
+            फ-१३८ (F-138)
+        </div>
+
+        <div class="center">
+            <h1>बँक ऑफ महाराष्ट्र</h1>
+            <div>
+                मुख्य कार्यालय 'लोकमंगल', 1501, शिवाजीनगर, पुणे ४११००५.
+            </div>
+        </div>
+
+        <div class="right-top">
+            अर्ज क्र. <input class="small" type="text">
+            <br>
+            वर्ष - 2026-2027
+        </div>
+
+    </div>
+
+
+    <!-- BRANCH -->
+
+    <div class="section center">
+
+        <h2>
+            शाखा :
+            <input class="medium" type="text" value="DHAWADA">
+        </h2>
+
+        <div>
+            " शेती कर्जासाठी अर्ज "
+        </div>
+
+        <div class="note">
+            ( पहिल्यांदा कर्ज मागणी करताना किंवा माहितीत बदल झाल्यास भरावयाचा अर्ज )
+        </div>
+
+        <div>
+            कृषी ऋण के लिये आवेदन प्रपत्र
+        </div>
+
+    </div>
+
+
+    <!-- PHOTO BOX -->
+
+    <div class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+
+    <!-- ADDRESS -->
+
+    <div class="section">
+
+        <div class="row">
+
+            <label>प्रति,</label>
+
+            <input class="large" type="text"
+                   placeholder="शाखा व्यवस्थापक">
+
+        </div>
+
+        <div class="row">
+
+            <label>अर्जदारांचे नाव :</label>
+
+            <input class="large" type="text">
+
+        </div>
+
+
+        <div class="address">
+
+            <label>पत्ता</label>
+            <input type="text" value="ADGAON">
+
+            <label>ता.</label>
+            <input type="text" value="BHOKARDAN">
+
+            <label>जि.</label>
+            <input type="text" value="JALNA">
+
+            <label>मो.नं.</label>
+            <input type="tel">
+
+            <label>वय</label>
+            <input type="number">
+
+            <label>वय :-</label>
+            <input type="number">
+
+        </div>
+
+    </div>
+
+
+    <!-- APPLICATION -->
+
+    <div class="section">
+
+        <p>
+            महोदय,
+        </p>
+
+        <p>
+            मी / आम्ही या अर्जाद्वारे एकूण रु.
+            <input class="medium" type="number">
+            ची कर्ज मागणी आपणाकडे करत आहोत व त्या साठी
+            आवश्यक माहिती खालील प्रमाणे आहेत.
+        </p>
+
+
+        <div class="row">
+
+            <label>कर्ज प्रकार</label>
+
+            <select class="medium">
+                <option>पीक कर्ज</option>
+                <option>कृषी कर्ज</option>
+                <option>इतर</option>
+            </select>
+
+            <label>रक्कम रु.</label>
+
+            <input class="medium" type="number">
+
+        </div>
+
+    </div>
+
+
+    <!-- LOAN TYPE -->
+
+    <div class="section">
+
+        <div class="bold">
+            1. पीक उत्पादन कर्ज ( परिशिष्ट 'अ' प्रमाणे )
+        </div>
+
+        <br>
+
+        <div class="bold">
+            उद्देश :-
+        </div>
+
+        <br>
+
+        <div class="bold">
+            क) महाबँक किसान क्रेडिट कार्ड ( MKCC )
+        </div>
+
+        <br>
+
+        <div>
+            ( सर्व साधारण माहिती )
+        </div>
+
+    </div>
+
+
+    <!-- APPLICANT -->
+
+    <div class="section">
+
+        <div class="bold">
+            अर्जदारांचे नाव :
+        </div>
+
+        <div class="row">
+
+            <label>क) श्री / श्रीमती :-</label>
+
+            <input class="large" type="text">
+
+            <label>वय :-</label>
+
+            <input class="small" type="number">
+
+        </div>
+
+
+        <div class="row">
+
+            <label>ख) गाव :-</label>
+
+            <input class="medium" type="text" value="ADGAON">
+
+            <label>तालुका :-</label>
+
+            <input class="medium" type="text" value="BHOKARDAN">
+
+            <label>जिल्हा :-</label>
+
+            <input class="medium" type="text" value="JALNA">
+
+        </div>
+
+
+        <div class="row">
+
+            <label>ग) श्री / श्रीमती :-</label>
+
+            <input class="large" type="text">
+
+            <label>वय :-</label>
+
+            <input class="small" type="number">
+
+        </div>
+
+
+        <div class="row">
+
+            <label>घ) गाव :-</label>
+
+            <input class="medium" type="text" value="ADGAON">
+
+            <label>तालुका :-</label>
+
+            <input class="medium" type="text" value="BHOKARDAN">
+
+            <label>जिल्हा :-</label>
+
+            <input class="medium" type="text" value="JALNA">
+
+        </div>
+
+    </div>
+
+
+    <!-- FAMILY TABLE -->
+
+    <div class="section">
+
+        <div class="bold">
+            1. कुटुंबातील व्यक्तींची माहिती :-
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>अनु क्र</th>
+
+                    <th>नाव</th>
+
+                    <th>नाते</th>
+
+                    <th>अर्जदारावर अवलंबून आहेत का?</th>
+
+                    <th>उत्पन्न वार्षिक (रु.)</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>क</td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="number">
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>ख</td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="text">
+                    </td>
+
+                    <td>
+                        <input type="number">
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- FAMILY HEAD -->
+
+    <div class="section">
+
+        <div>
+            1. कुटुंब प्रमुखाचे नाव
+            ( संयुक्त हिंदू कुटुंबासंबंधी ) :-
+        </div>
+
+        <input class="full" type="text">
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <div class="buttons">
+
+        <button onclick="window.print()">
+            🖨️ Print / PDF
+        </button>
+
+        <button onclick="clearForm()">
+            ↻ Form Clear
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function clearForm(){
+
+    if(confirm("सर्व माहिती Clear करायची आहे का?")){
+
+        document.querySelectorAll("input").forEach(function(input){
+
+            input.value = "";
+
+        });
+
+        document.querySelectorAll("select").forEach(function(select){
+
+            select.selectedIndex = 0;
+
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
