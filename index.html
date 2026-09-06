@@ -2,137 +2,125 @@
 <html lang="mr">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>पीक कर्ज अर्ज 2026-2027</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
 
 body{
     margin:0;
-    padding:20px;
-    background:#eeeeee;
+    background:#e5e5e5;
     font-family:"Noto Sans Devanagari","Mangal",Arial,sans-serif;
-    color:#111;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:#222;
+    padding:10px;
+    text-align:center;
+}
+
+.header button{
+    border:0;
+    border-radius:6px;
+    padding:10px 18px;
+    margin:3px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.printBtn{
+    background:#198754;
+    color:white;
+}
+
+.clearBtn{
+    background:#dc3545;
+    color:white;
 }
 
 .page{
     width:210mm;
     min-height:297mm;
-    margin:0 auto 20px auto;
     background:white;
+    margin:20px auto;
     padding:12mm;
-    box-shadow:0 0 8px #999;
+    box-shadow:0 0 8px #888;
     position:relative;
 }
 
-h1{
+.title{
     text-align:center;
-    font-size:25px;
-    margin:0;
-}
-
-h2{
-    text-align:center;
-    font-size:18px;
-    margin:4px 0;
-}
-
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #000;
-    padding-bottom:5px;
-}
-
-.left-top{
     font-weight:bold;
-    font-size:14px;
+    font-size:22px;
 }
 
-.right-top{
-    font-size:14px;
-}
-
-.center{
+.subtitle{
     text-align:center;
+    font-size:15px;
+    margin-top:4px;
+}
+
+.line{
+    border-bottom:1px solid #000;
+    margin:6px 0;
 }
 
 .row{
     display:flex;
-    gap:10px;
     align-items:center;
-    margin:7px 0;
+    gap:6px;
+    margin:6px 0;
 }
 
-.row label{
-    white-space:nowrap;
+label{
     font-weight:bold;
+    white-space:nowrap;
 }
 
-input, textarea, select{
+input,
+textarea,
+select{
+    font-family:inherit;
+    font-size:14px;
     border:0;
     border-bottom:1px solid #000;
     outline:none;
-    font-size:15px;
-    padding:3px;
-    background:#fff;
-    font-family:inherit;
+    background:transparent;
+    padding:2px 4px;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-    background:#fffde7;
+    background:#fff9c4;
 }
 
-.full{
-    width:100%;
-}
+.w50{width:50px}
+.w80{width:80px}
+.w100{width:100px}
+.w120{width:120px}
+.w150{width:150px}
+.w180{width:180px}
+.w220{width:220px}
+.w280{width:280px}
+.w350{width:350px}
+.full{width:100%}
 
-.medium{
-    width:180px;
-}
-
-.small{
-    width:90px;
-}
-
-.large{
-    width:280px;
-}
-
-.boxes{
-    display:flex;
-    gap:10px;
-    margin-left:auto;
+.center{
+    text-align:center;
 }
 
 .box{
-    width:42px;
-    height:42px;
     border:1px solid #000;
-}
-
-.section{
-    margin-top:12px;
-}
-
-.bold{
-    font-weight:bold;
-}
-
-.address{
-    display:grid;
-    grid-template-columns:80px 1fr 80px 1fr 70px 1fr;
-    gap:5px;
-    align-items:center;
+    padding:8px;
+    margin-top:10px;
 }
 
 table{
@@ -143,68 +131,89 @@ table{
 
 th,td{
     border:1px solid #000;
-    padding:7px;
+    padding:5px;
+    font-size:13px;
     text-align:center;
-    height:38px;
 }
 
-th{
-    font-weight:bold;
-}
-
-table input{
+td input{
     width:100%;
     border:0;
     text-align:center;
 }
 
-.note{
-    font-size:13px;
+.section-title{
+    font-weight:bold;
+    margin-top:12px;
+    margin-bottom:5px;
 }
 
-button{
-    border:0;
-    padding:12px 20px;
-    margin:5px;
-    border-radius:6px;
-    background:#1976d2;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+.signature{
+    display:flex;
+    justify-content:space-between;
+    margin-top:35px;
 }
 
-.buttons{
+.signbox{
+    width:180px;
     text-align:center;
-    margin:20px;
+}
+
+.bigspace{
+    height:35px;
+}
+
+.note{
+    font-size:12px;
+}
+
+.page-number{
+    position:absolute;
+    bottom:5mm;
+    right:10mm;
+    font-size:12px;
 }
 
 @media(max-width:800px){
 
     body{
-        padding:5px;
+        background:white;
+    }
+
+    .header{
+        position:relative;
     }
 
     .page{
         width:100%;
         min-height:auto;
+        margin:5px 0;
         padding:15px;
-    }
-
-    .address{
-        grid-template-columns:1fr 2fr;
+        box-shadow:none;
     }
 
     .row{
         flex-wrap:wrap;
     }
 
+    table{
+        overflow-x:auto;
+    }
 }
 
 @media print{
 
+    @page{
+        size:A4;
+        margin:0;
+    }
+
     body{
         background:white;
-        padding:0;
+    }
+
+    .header{
+        display:none;
     }
 
     .page{
@@ -212,374 +221,861 @@ button{
         height:297mm;
         min-height:297mm;
         margin:0;
-        padding:12mm;
         box-shadow:none;
         page-break-after:always;
     }
 
-    .buttons{
-        display:none;
+    input,
+    textarea,
+    select{
+        background:transparent !important;
     }
-
-    input, textarea, select{
-        background:white !important;
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
+<div class="header">
+
+    <button class="printBtn" onclick="window.print()">
+        🖨️ Print / PDF
+    </button>
+
+    <button class="clearBtn" onclick="clearForm()">
+        🗑️ Clear
+    </button>
+
+</div>
+
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
 <div class="page">
 
-    <!-- HEADER -->
+    <div class="title">
+        बँक ऑफ महाराष्ट्र
+    </div>
 
-    <div class="top">
+    <div class="subtitle">
+        मुख्य कार्यालय 'लोकमंगल', 1501, शिवाजीनगर, पुणे ४११००५.
+    </div>
 
-        <div class="left-top">
-            फ-१३८ (F-138)
-        </div>
+    <div class="line"></div>
 
-        <div class="center">
-            <h1>बँक ऑफ महाराष्ट्र</h1>
-            <div>
-                मुख्य कार्यालय 'लोकमंगल', 1501, शिवाजीनगर, पुणे ४११००५.
-            </div>
-        </div>
+    <div class="row">
 
-        <div class="right-top">
-            अर्ज क्र. <input class="small" type="text">
-            <br>
-            वर्ष - 2026-2027
-        </div>
+        <label>अर्ज क्र. :</label>
+        <input class="w150" type="text">
+
+        <label>वर्ष :</label>
+        <input class="w100" type="text" value="2026-2027">
+
+        <label>शाखा :</label>
+        <input class="w150" type="text" value="DHAWADA">
 
     </div>
 
+    <div class="center">
 
-    <!-- BRANCH -->
-
-    <div class="section center">
-
-        <h2>
-            शाखा :
-            <input class="medium" type="text" value="DHAWADA">
-        </h2>
-
-        <div>
-            " शेती कर्जासाठी अर्ज "
+        <div class="title" style="font-size:18px;">
+            शेती कर्जासाठी अर्ज
         </div>
 
         <div class="note">
-            ( पहिल्यांदा कर्ज मागणी करताना किंवा माहितीत बदल झाल्यास भरावयाचा अर्ज )
-        </div>
-
-        <div>
-            कृषी ऋण के लिये आवेदन प्रपत्र
+            (पहिल्यांदा कर्ज मागणी करताना किंवा माहितीत बदल झाल्यास भरावयाचा अर्ज)
         </div>
 
     </div>
 
-
-    <!-- PHOTO BOX -->
-
-    <div class="boxes">
-        <div class="box"></div>
-        <div class="box"></div>
+    <div class="section-title">
+        प्रति,
     </div>
 
+    <div class="row">
+        <label>शाखा व्यवस्थापक,</label>
+        <input class="w280" type="text">
+    </div>
 
-    <!-- ADDRESS -->
+    <div class="section-title">
+        अर्जदाराची माहिती
+    </div>
 
-    <div class="section">
+    <div class="row">
 
-        <div class="row">
+        <label>अर्जदाराचे नाव :</label>
 
-            <label>प्रति,</label>
-
-            <input class="large" type="text"
-                   placeholder="शाखा व्यवस्थापक">
-
-        </div>
-
-        <div class="row">
-
-            <label>अर्जदारांचे नाव :</label>
-
-            <input class="large" type="text">
-
-        </div>
-
-
-        <div class="address">
-
-            <label>पत्ता</label>
-            <input type="text" value="ADGAON">
-
-            <label>ता.</label>
-            <input type="text" value="BHOKARDAN">
-
-            <label>जि.</label>
-            <input type="text" value="JALNA">
-
-            <label>मो.नं.</label>
-            <input type="tel">
-
-            <label>वय</label>
-            <input type="number">
-
-            <label>वय :-</label>
-            <input type="number">
-
-        </div>
+        <input class="w350" type="text">
 
     </div>
 
+    <div class="row">
 
-    <!-- APPLICATION -->
+        <label>वडिलांचे / पतीचे नाव :</label>
 
-    <div class="section">
-
-        <p>
-            महोदय,
-        </p>
-
-        <p>
-            मी / आम्ही या अर्जाद्वारे एकूण रु.
-            <input class="medium" type="number">
-            ची कर्ज मागणी आपणाकडे करत आहोत व त्या साठी
-            आवश्यक माहिती खालील प्रमाणे आहेत.
-        </p>
-
-
-        <div class="row">
-
-            <label>कर्ज प्रकार</label>
-
-            <select class="medium">
-                <option>पीक कर्ज</option>
-                <option>कृषी कर्ज</option>
-                <option>इतर</option>
-            </select>
-
-            <label>रक्कम रु.</label>
-
-            <input class="medium" type="number">
-
-        </div>
+        <input class="w280" type="text">
 
     </div>
 
+    <div class="row">
 
-    <!-- LOAN TYPE -->
+        <label>गाव :</label>
+        <input class="w180" type="text" value="ADGAON">
 
-    <div class="section">
+        <label>ता. :</label>
+        <input class="w150" type="text" value="BHOKARDAN">
 
-        <div class="bold">
-            1. पीक उत्पादन कर्ज ( परिशिष्ट 'अ' प्रमाणे )
-        </div>
-
-        <br>
-
-        <div class="bold">
-            उद्देश :-
-        </div>
-
-        <br>
-
-        <div class="bold">
-            क) महाबँक किसान क्रेडिट कार्ड ( MKCC )
-        </div>
-
-        <br>
-
-        <div>
-            ( सर्व साधारण माहिती )
-        </div>
+        <label>जि. :</label>
+        <input class="w150" type="text" value="JALNA">
 
     </div>
 
+    <div class="row">
 
-    <!-- APPLICANT -->
+        <label>मोबाईल नं. :</label>
+        <input class="w180" type="tel">
 
-    <div class="section">
-
-        <div class="bold">
-            अर्जदारांचे नाव :
-        </div>
-
-        <div class="row">
-
-            <label>क) श्री / श्रीमती :-</label>
-
-            <input class="large" type="text">
-
-            <label>वय :-</label>
-
-            <input class="small" type="number">
-
-        </div>
-
-
-        <div class="row">
-
-            <label>ख) गाव :-</label>
-
-            <input class="medium" type="text" value="ADGAON">
-
-            <label>तालुका :-</label>
-
-            <input class="medium" type="text" value="BHOKARDAN">
-
-            <label>जिल्हा :-</label>
-
-            <input class="medium" type="text" value="JALNA">
-
-        </div>
-
-
-        <div class="row">
-
-            <label>ग) श्री / श्रीमती :-</label>
-
-            <input class="large" type="text">
-
-            <label>वय :-</label>
-
-            <input class="small" type="number">
-
-        </div>
-
-
-        <div class="row">
-
-            <label>घ) गाव :-</label>
-
-            <input class="medium" type="text" value="ADGAON">
-
-            <label>तालुका :-</label>
-
-            <input class="medium" type="text" value="BHOKARDAN">
-
-            <label>जिल्हा :-</label>
-
-            <input class="medium" type="text" value="JALNA">
-
-        </div>
+        <label>वय :</label>
+        <input class="w80" type="number">
 
     </div>
 
+    <div class="row">
 
-    <!-- FAMILY TABLE -->
+        <label>आधार क्रमांक :</label>
+        <input class="w220" type="text" maxlength="12">
 
-    <div class="section">
+    </div>
 
-        <div class="bold">
-            1. कुटुंबातील व्यक्तींची माहिती :-
+    <div class="section-title">
+        कर्जाची माहिती
+    </div>
+
+    <div class="row">
+
+        <label>कर्ज प्रकार :</label>
+
+        <select class="w180">
+
+            <option>पीक कर्ज</option>
+            <option>कृषी कर्ज</option>
+            <option>इतर</option>
+
+        </select>
+
+        <label>मागणी रक्कम :</label>
+
+        <input class="w150" type="number">
+
+        <label>रु.</label>
+
+    </div>
+
+    <div class="box">
+
+        <div class="section-title">
+            कुटुंबातील व्यक्तींची माहिती
         </div>
-
 
         <table>
 
-            <thead>
+            <tr>
+                <th>अ.क्र.</th>
+                <th>नाव</th>
+                <th>नाते</th>
+                <th>वय</th>
+                <th>व्यवसाय</th>
+                <th>वार्षिक उत्पन्न</th>
+            </tr>
 
-                <tr>
+            <tr>
+                <td>1</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+            </tr>
 
-                    <th>अनु क्र</th>
+            <tr>
+                <td>2</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+            </tr>
 
-                    <th>नाव</th>
+            <tr>
+                <td>3</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+            </tr>
 
-                    <th>नाते</th>
-
-                    <th>अर्जदारावर अवलंबून आहेत का?</th>
-
-                    <th>उत्पन्न वार्षिक (रु.)</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td>क</td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="number">
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>ख</td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="text">
-                    </td>
-
-                    <td>
-                        <input type="number">
-                    </td>
-
-                </tr>
-
-            </tbody>
+            <tr>
+                <td>4</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+            </tr>
 
         </table>
 
     </div>
 
+    <div class="section-title">
+        कुटुंब प्रमुखाचे नाव :
+    </div>
 
-    <!-- FAMILY HEAD -->
+    <input class="full" type="text">
 
-    <div class="section">
+    <div class="bigspace"></div>
 
-        <div>
-            1. कुटुंब प्रमुखाचे नाव
-            ( संयुक्त हिंदू कुटुंबासंबंधी ) :-
+    <div class="signature">
+
+        <div class="signbox">
+            दिनांक
+            <br><br>
+            <input class="w150" type="date">
         </div>
 
-        <input class="full" type="text">
+        <div class="signbox">
+            अर्जदाराची सही
+            <br><br>
+            __________________
+        </div>
 
     </div>
 
+    <div class="page-number">
+        पृष्ठ 1 / 7
+    </div>
 
-    <!-- BUTTON -->
+</div>
 
-    <div class="buttons">
 
-        <button onclick="window.print()">
-            🖨️ Print / PDF
-        </button>
+<!-- =========================
+     PAGE 2
+========================= -->
 
-        <button onclick="clearForm()">
-            ↻ Form Clear
-        </button>
+<div class="page">
 
+    <div class="title">
+        पीक कर्ज अर्ज
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section-title">
+        जमिनीची माहिती
+    </div>
+
+    <table>
+
+        <tr>
+            <th>अ.क्र.</th>
+            <th>गाव</th>
+            <th>गट नं.</th>
+            <th>क्षेत्र</th>
+            <th>जमिनीचा प्रकार</th>
+            <th>मालकी / भाडे</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        शेतीचा प्रकार
+    </div>
+
+    <div class="row">
+
+        <label>जिरायत क्षेत्र :</label>
+        <input class="w120" type="text">
+
+        <label>बागायत क्षेत्र :</label>
+        <input class="w120" type="text">
+
+        <label>एकूण :</label>
+        <input class="w120" type="text">
+
+    </div>
+
+    <div class="section-title">
+        सिंचनाची माहिती
+    </div>
+
+    <div class="row">
+
+        <label>विहीर :</label>
+        <select class="w120">
+            <option>नाही</option>
+            <option>आहे</option>
+        </select>
+
+        <label>बोअर :</label>
+        <select class="w120">
+            <option>नाही</option>
+            <option>आहे</option>
+        </select>
+
+        <label>ठिबक :</label>
+        <select class="w120">
+            <option>नाही</option>
+            <option>आहे</option>
+        </select>
+
+    </div>
+
+    <div class="section-title">
+        मागील कर्जाची माहिती
+    </div>
+
+    <table>
+
+        <tr>
+            <th>बँकेचे नाव</th>
+            <th>कर्ज प्रकार</th>
+            <th>कर्ज खाते क्र.</th>
+            <th>मंजूर रक्कम</th>
+            <th>थकबाकी</th>
+        </tr>
+
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        इतर माहिती
+    </div>
+
+    <textarea class="full" rows="5"></textarea>
+
+    <div class="signature">
+
+        <div class="signbox">
+            दिनांक
+        </div>
+
+        <div class="signbox">
+            अर्जदाराची सही
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 2 / 7
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        पीक व लागवड माहिती
+    </div>
+
+    <div class="line"></div>
+
+    <table>
+
+        <tr>
+            <th>अ.क्र.</th>
+            <th>पीक</th>
+            <th>क्षेत्र</th>
+            <th>हंगाम</th>
+            <th>अपेक्षित उत्पादन</th>
+            <th>प्रति एकर खर्च</th>
+            <th>कर्ज मागणी</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="number"></td>
+            <td><input type="number"></td>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        लागवडीसाठी आवश्यक खर्च
+    </div>
+
+    <table>
+
+        <tr>
+            <th>खर्चाचा प्रकार</th>
+            <th>रक्कम</th>
+        </tr>
+
+        <tr>
+            <td>बियाणे</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>खते</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>औषधे</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>मजुरी</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>इतर</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <th>एकूण</th>
+            <th><input type="number"></th>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        पीक कर्जाची एकूण मागणी
+    </div>
+
+    <div class="row">
+
+        <label>रुपये :</label>
+        <input class="w220" type="number">
+
+    </div>
+
+    <div class="signature">
+
+        <div class="signbox">
+            दिनांक
+        </div>
+
+        <div class="signbox">
+            अर्जदाराची सही
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 3 / 7
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 4
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        कर्जदाराची घोषणा
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section-title">
+        घोषणा / स्वयंघोषणापत्र
+    </div>
+
+    <textarea class="full" rows="14"
+placeholder="येथे घोषणा / मजकूर भरा..."></textarea>
+
+    <div class="section-title">
+        अर्जदाराची माहिती
+    </div>
+
+    <div class="row">
+        <label>नाव :</label>
+        <input class="w350" type="text">
+    </div>
+
+    <div class="row">
+        <label>गाव :</label>
+        <input class="w180" type="text">
+        <label>तालुका :</label>
+        <input class="w180" type="text">
+    </div>
+
+    <div class="row">
+        <label>जिल्हा :</label>
+        <input class="w180" type="text">
+        <label>मोबाईल :</label>
+        <input class="w180" type="tel">
+    </div>
+
+    <div class="signature">
+
+        <div class="signbox">
+            दिनांक
+            <br><br>
+            <input class="w150" type="date">
+        </div>
+
+        <div class="signbox">
+            अर्जदाराची सही
+            <br><br>
+            __________________
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 4 / 7
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 5
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        हमी / प्रतिज्ञापत्र
+    </div>
+
+    <div class="line"></div>
+
+    <textarea class="full" rows="22"
+placeholder="येथे प्रतिज्ञापत्राचा मजकूर भरा..."></textarea>
+
+    <div class="row">
+
+        <label>अर्जदाराचे नाव :</label>
+
+        <input class="w350" type="text">
+
+    </div>
+
+    <div class="row">
+
+        <label>ठिकाण :</label>
+
+        <input class="w180" type="text">
+
+        <label>दिनांक :</label>
+
+        <input class="w150" type="date">
+
+    </div>
+
+    <div class="signature">
+
+        <div class="signbox">
+            साक्षीदार
+            <br><br>
+            __________________
+        </div>
+
+        <div class="signbox">
+            अर्जदाराची सही
+            <br><br>
+            __________________
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 5 / 7
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 6
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        बँक वापरासाठी
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section-title">
+        कार्यालयीन नोंद
+    </div>
+
+    <table>
+
+        <tr>
+            <th>तपशील</th>
+            <th>माहिती</th>
+        </tr>
+
+        <tr>
+            <td>कर्जदाराचे नाव</td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>कर्ज खाते क्रमांक</td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>मंजूर कर्ज रक्कम</td>
+            <td><input type="number"></td>
+        </tr>
+
+        <tr>
+            <td>परतफेड कालावधी</td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>व्याजदर</td>
+            <td><input type="text"></td>
+        </tr>
+
+        <tr>
+            <td>शेरा</td>
+            <td><input type="text"></td>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        अधिकाऱ्याची नोंद
+    </div>
+
+    <textarea class="full" rows="8"></textarea>
+
+    <div class="signature">
+
+        <div class="signbox">
+            अधिकारी
+            <br><br>
+            __________________
+        </div>
+
+        <div class="signbox">
+            शाखा व्यवस्थापक
+            <br><br>
+            __________________
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 6 / 7
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 7
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        अंतिम तपशील
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section-title">
+        आवश्यक कागदपत्रे
+    </div>
+
+    <table>
+
+        <tr>
+            <th>अ.क्र.</th>
+            <th>कागदपत्र</th>
+            <th>उपलब्ध</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>आधार कार्ड</td>
+            <td>
+                <select>
+                    <option>होय</option>
+                    <option>नाही</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>बँक पासबुक</td>
+            <td>
+                <select>
+                    <option>होय</option>
+                    <option>नाही</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>7/12 उतारा</td>
+            <td>
+                <select>
+                    <option>होय</option>
+                    <option>नाही</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>8A उतारा</td>
+            <td>
+                <select>
+                    <option>होय</option>
+                    <option>नाही</option>
+                </select>
+            </td>
+        </tr>
+
+    </table>
+
+    <div class="section-title">
+        अतिरिक्त नोंद
+    </div>
+
+    <textarea class="full" rows="10"></textarea>
+
+    <div class="signature">
+
+        <div class="signbox">
+            दिनांक
+            <br><br>
+            <input class="w150" type="date">
+        </div>
+
+        <div class="signbox">
+            अर्जदाराची सही
+            <br><br>
+            __________________
+        </div>
+
+    </div>
+
+    <div class="page-number">
+        पृष्ठ 7 / 7
     </div>
 
 </div>
@@ -589,21 +1085,27 @@ button{
 
 function clearForm(){
 
-    if(confirm("सर्व माहिती Clear करायची आहे का?")){
+    const ok = confirm(
+        "तुम्ही भरलेली सर्व माहिती Clear करायची आहे का?"
+    );
 
-        document.querySelectorAll("input").forEach(function(input){
+    if(!ok) return;
 
-            input.value = "";
+    document
+    .querySelectorAll("input, textarea")
+    .forEach(function(el){
 
-        });
+        el.value = "";
 
-        document.querySelectorAll("select").forEach(function(select){
+    });
 
-            select.selectedIndex = 0;
+    document
+    .querySelectorAll("select")
+    .forEach(function(el){
 
-        });
+        el.selectedIndex = 0;
 
-    }
+    });
 
 }
 
