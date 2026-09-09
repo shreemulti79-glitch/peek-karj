@@ -1,191 +1,808 @@
-/* =====================================
-   PAGE 1 - EXACT OVERLAY
-===================================== */
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-if(i === 1){
+<title>शेती कर्जासाठी अर्ज 2026-2027</title>
 
-    /* ================================
-       अर्जदार 1
-    ================================= */
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-    field(
-        page,
-        "applicant1",
-        31.0, 15.7,
-        39.0, 3.0,
-        "अर्जदाराचे नाव"
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#d9d9d9;
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+}
+
+/* =========================
+   TOP BUTTONS
+========================= */
+
+.toolbar{
+    position:sticky;
+    top:0;
+    z-index:9999;
+
+    background:#075ca8;
+
+    padding:10px;
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+
+    box-shadow:0 2px 5px #777;
+}
+
+.toolbar button{
+    padding:10px 18px;
+    border:0;
+    border-radius:5px;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.save{
+    background:white;
+    color:#075ca8;
+}
+
+.print{
+    background:#19a34a;
+    color:white;
+}
+
+.clear{
+    background:#dc2626;
+    color:white;
+}
+
+
+/* =========================
+   A4 PAGE
+========================= */
+
+#formContainer{
+    padding:20px 0;
+}
+
+.page{
+
+    position:relative;
+
+    width:210mm;
+    height:297mm;
+
+    margin:0 auto 20px;
+
+    background:white;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.30);
+
+    overflow:hidden;
+}
+
+
+/* PDF */
+
+.page canvas{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    display:block;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.field{
+
+    position:absolute;
+
+    z-index:20;
+
+    border:1px solid #777;
+
+    background:rgba(255,255,255,.88);
+
+    outline:none;
+
+    padding:2px 4px;
+
+    font-size:12px;
+
+    color:#111;
+
+    border-radius:1px;
+}
+
+
+.field:focus{
+
+    border:2px solid #0875d1;
+
+    background:white;
+
+}
+
+
+.field::placeholder{
+
+    color:#777;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    #formContainer{
+        padding:5px 0;
+    }
+
+    .page{
+
+        width:100vw;
+
+        height:141.428vw;
+
+        margin:0 0 10px;
+
+    }
+
+    .field{
+
+        font-size:9px;
+
+        padding:1px 2px;
+
+    }
+
+}
+
+
+/* =========================
+   PRINT
+========================= */
+
+@page{
+
+    size:A4;
+
+    margin:0;
+
+}
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .toolbar{
+        display:none;
+    }
+
+    #formContainer{
+        padding:0;
+    }
+
+    .page{
+
+        width:210mm;
+        height:297mm;
+
+        margin:0;
+
+        box-shadow:none;
+
+        page-break-after:always;
+
+    }
+
+    .field{
+
+        border:0;
+
+        background:transparent;
+
+        color:#000;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="toolbar">
+
+    <button class="save" onclick="saveData()">
+        💾 माहिती सेव्ह
+    </button>
+
+    <button class="print" onclick="window.print()">
+        🖨️ Print / PDF
+    </button>
+
+    <button class="clear" onclick="clearData()">
+        🗑️ Clear
+    </button>
+
+</div>
+
+
+<div id="formContainer"></div>
+
+
+<script>
+
+/* =========================================
+   PDF
+========================================= */
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+const PDF_FILE = "PEEK-KARJ-FORM.pdf";
+
+const container =
+document.getElementById("formContainer");
+
+
+/* =========================================
+   INPUT CREATE
+========================================= */
+
+function addField(
+    page,
+    name,
+    left,
+    top,
+    width,
+    height,
+    placeholder=""
+){
+
+    const input =
+    document.createElement("input");
+
+    input.type="text";
+
+    input.className="field";
+
+    input.id=name;
+
+    input.name=name;
+
+    input.placeholder=placeholder;
+
+
+    input.style.left=left+"%";
+
+    input.style.top=top+"%";
+
+    input.style.width=width+"%";
+
+    input.style.height=height+"%";
+
+
+    page.appendChild(input);
+
+    return input;
+}
+
+
+/* =========================================
+   LOAD PDF
+========================================= */
+
+async function loadPDF(){
+
+    try{
+
+        const pdf =
+        await pdfjsLib
+        .getDocument(PDF_FILE)
+        .promise;
+
+
+        for(
+            let pageNumber=1;
+            pageNumber<=pdf.numPages;
+            pageNumber++
+        ){
+
+            const pdfPage =
+            await pdf.getPage(pageNumber);
+
+
+            const viewport =
+            pdfPage.getViewport({
+                scale:1.5
+            });
+
+
+            const page =
+            document.createElement("div");
+
+
+            page.className="page";
+
+
+            page.id =
+            "page"+pageNumber;
+
+
+            const canvas =
+            document.createElement("canvas");
+
+
+            canvas.width =
+            viewport.width;
+
+
+            canvas.height =
+            viewport.height;
+
+
+            page.appendChild(canvas);
+
+
+            container.appendChild(page);
+
+
+            await pdfPage.render({
+
+                canvasContext:
+                canvas.getContext("2d"),
+
+                viewport:viewport
+
+            }).promise;
+
+
+            /* =================================
+               PAGE 1
+            ================================= */
+
+            if(pageNumber===1){
+
+                /*
+                अर्जदार 1
+                */
+
+                addField(
+                    page,
+                    "applicant1",
+                    31.5,
+                    24.8,
+                    36,
+                    3,
+                    "नाव"
+                );
+
+
+                /*
+                अर्जदार 1 वय
+                */
+
+                addField(
+                    page,
+                    "age1",
+                    64.8,
+                    24.8,
+                    10,
+                    3,
+                    "वय"
+                );
+
+
+                /*
+                अर्जदार 2
+                */
+
+                addField(
+                    page,
+                    "applicant2",
+                    31.5,
+                    28.0,
+                    36,
+                    3,
+                    "नाव"
+                );
+
+
+                /*
+                अर्जदार 2 वय
+                */
+
+                addField(
+                    page,
+                    "age2",
+                    64.8,
+                    28.0,
+                    10,
+                    3,
+                    "वय"
+                );
+
+
+                /*
+                मोबाईल
+                */
+
+                addField(
+                    page,
+                    "mobile",
+                    72.5,
+                    30.0,
+                    19,
+                    3,
+                    "मोबाईल नंबर"
+                );
+
+
+                /*
+                कर्जाची रक्कम
+                */
+
+                addField(
+                    page,
+                    "loanAmount",
+                    39,
+                    41.0,
+                    20,
+                    3,
+                    "रक्कम ₹"
+                );
+
+
+                /*
+                अर्जदाराचे नाव
+                खालील section
+                */
+
+                addField(
+                    page,
+                    "mainApplicant1",
+                    28,
+                    56.5,
+                    39,
+                    3,
+                    "श्री / श्रीमती"
+                );
+
+
+                addField(
+                    page,
+                    "mainAge1",
+                    68,
+                    56.5,
+                    10,
+                    3,
+                    "वय"
+                );
+
+
+                /*
+                दुसरा अर्जदार
+                */
+
+                addField(
+                    page,
+                    "mainApplicant2",
+                    28,
+                    61.5,
+                    39,
+                    3,
+                    "श्री / श्रीमती"
+                );
+
+
+                addField(
+                    page,
+                    "mainAge2",
+                    68,
+                    61.5,
+                    10,
+                    3,
+                    "वय"
+                );
+
+
+                /*
+                कुटुंबातील व्यक्ती
+                Row 1
+                */
+
+                addField(
+                    page,
+                    "familyName1",
+                    27,
+                    74.5,
+                    29,
+                    3,
+                    "नाव"
+                );
+
+
+                addField(
+                    page,
+                    "familyRelation1",
+                    56.5,
+                    74.5,
+                    13,
+                    3,
+                    "नाते"
+                );
+
+
+                addField(
+                    page,
+                    "familyDependent1",
+                    70,
+                    74.5,
+                    13,
+                    3,
+                    "होय / नाही"
+                );
+
+
+                addField(
+                    page,
+                    "familyIncome1",
+                    84,
+                    74.5,
+                    12,
+                    3,
+                    "रक्कम"
+                );
+
+
+                /*
+                Row 2
+                */
+
+                addField(
+                    page,
+                    "familyName2",
+                    27,
+                    80.0,
+                    29,
+                    3,
+                    "नाव"
+                );
+
+
+                addField(
+                    page,
+                    "familyRelation2",
+                    56.5,
+                    80.0,
+                    13,
+                    3,
+                    "नाते"
+                );
+
+
+                addField(
+                    page,
+                    "familyDependent2",
+                    70,
+                    80.0,
+                    13,
+                    3,
+                    "होय / नाही"
+                );
+
+
+                addField(
+                    page,
+                    "familyIncome2",
+                    84,
+                    80.0,
+                    12,
+                    3,
+                    "रक्कम"
+                );
+
+
+                /*
+                कुटुंब प्रमुखाचे नाव
+                */
+
+                addField(
+                    page,
+                    "familyHead",
+                    51,
+                    87.0,
+                    45,
+                    3,
+                    "कुटुंब प्रमुखाचे नाव"
+                );
+
+            }
+
+        }
+
+
+        loadSavedData();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML = `
+
+        <div style="
+            text-align:center;
+            color:red;
+            padding:50px;
+            font-size:20px;
+        ">
+
+        PDF Load होत नाही.
+
+        <br><br>
+
+        तपासा:
+
+        <br>
+
+        PEEK-KARJ-FORM.pdf
+
+        <br><br>
+
+        हे नाव PDF चे exact नाव आहे का?
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function saveData(){
+
+    const data={};
+
+
+    document
+    .querySelectorAll(".field")
+    .forEach(input=>{
+
+        data[input.name]=
+        input.value;
+
+    });
+
+
+    localStorage.setItem(
+        "PEEK_KARJ_DATA",
+        JSON.stringify(data)
     );
 
-    field(
-        page,
-        "age1",
-        70.8, 15.7,
-        10.5, 3.0,
-        "वय"
-    );
 
-
-    /* ================================
-       अर्जदार 2
-    ================================= */
-
-    field(
-        page,
-        "applicant2",
-        31.0, 19.0,
-        39.0, 3.0,
-        "अर्जदाराचे नाव"
-    );
-
-    field(
-        page,
-        "age2",
-        70.8, 19.0,
-        10.5, 3.0,
-        "वय"
-    );
-
-
-    /* ================================
-       मोबाईल
-    ================================= */
-
-    field(
-        page,
-        "mobile",
-        73.0, 23.8,
-        20.0, 3.0,
-        "मोबाईल नंबर",
-        "tel"
-    );
-
-
-    /* ================================
-       अर्जदाराचे नाव
-    ================================= */
-
-    field(
-        page,
-        "person1",
-        23.0, 53.5,
-        42.0, 3.0,
-        "श्री / श्रीमती"
-    );
-
-    field(
-        page,
-        "person1Age",
-        68.0, 53.5,
-        12.0, 3.0,
-        "वय"
-    );
-
-
-    /* ================================
-       दुसरा अर्जदार
-    ================================= */
-
-    field(
-        page,
-        "person2",
-        23.0, 57.5,
-        42.0, 3.0,
-        "श्री / श्रीमती"
-    );
-
-    field(
-        page,
-        "person2Age",
-        68.0, 57.5,
-        12.0, 3.0,
-        "वय"
-    );
-
-
-    /* ================================
-       कुटुंबातील व्यक्ती - Row 1
-    ================================= */
-
-    field(
-        page,
-        "family1",
-        24.0, 68.5,
-        29.0, 3.0,
-        "नाव"
-    );
-
-    field(
-        page,
-        "relation1",
-        56.0, 68.5,
-        13.0, 3.0,
-        "नाते"
-    );
-
-    field(
-        page,
-        "dependent1",
-        70.5, 68.5,
-        12.0, 3.0,
-        "होय/नाही"
-    );
-
-    field(
-        page,
-        "income1",
-        84.0, 68.5,
-        12.0, 3.0,
-        "रक्कम"
-    );
-
-
-    /* ================================
-       कुटुंबातील व्यक्ती - Row 2
-    ================================= */
-
-    field(
-        page,
-        "family2",
-        24.0, 72.5,
-        29.0, 3.0,
-        "नाव"
-    );
-
-    field(
-        page,
-        "relation2",
-        56.0, 72.5,
-        13.0, 3.0,
-        "नाते"
-    );
-
-    field(
-        page,
-        "dependent2",
-        70.5, 72.5,
-        12.0, 3.0,
-        "होय/नाही"
-    );
-
-    field(
-        page,
-        "income2",
-        84.0, 72.5,
-        12.0, 3.0,
-        "रक्कम"
-    );
-
-
-    /* ================================
-       कुटुंब प्रमुख
-    ================================= */
-
-    field(
-        page,
-        "familyHead",
-        48.0, 78.0,
-        40.0, 3.0,
-        "कुटुंब प्रमुखाचे नाव"
+    alert(
+        "✅ माहिती सेव्ह झाली."
     );
 
 }
+
+
+/* =========================================
+   LOAD
+========================================= */
+
+function loadSavedData(){
+
+    const saved =
+    localStorage.getItem(
+        "PEEK_KARJ_DATA"
+    );
+
+
+    if(!saved){
+        return;
+    }
+
+
+    const data =
+    JSON.parse(saved);
+
+
+    Object.keys(data)
+    .forEach(key=>{
+
+        const input =
+        document.getElementById(key);
+
+
+        if(input){
+
+            input.value =
+            data[key];
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   CLEAR
+========================================= */
+
+function clearData(){
+
+    if(
+        !confirm(
+            "सर्व भरलेली माहिती Delete करायची आहे का?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "PEEK_KARJ_DATA"
+    );
+
+
+    document
+    .querySelectorAll(".field")
+    .forEach(input=>{
+
+        input.value="";
+
+    });
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPDF();
+
+</script>
+
+</body>
+</html>
