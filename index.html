@@ -1,1084 +1,191 @@
-<!DOCTYPE html>
-<html lang="mr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>शेती कर्ज अर्ज 2026-2027</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-<style>
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    background:#ddd;
-    font-family:"Noto Sans Devanagari",Arial,sans-serif;
-}
-
-/* =========================
-   TOP BAR
-========================= */
-
-.toolbar{
-    position:sticky;
-    top:0;
-    z-index:99999;
-    background:#075ca8;
-    padding:10px;
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.toolbar button{
-    border:0;
-    border-radius:5px;
-    padding:10px 18px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.save{
-    background:#fff;
-    color:#075ca8;
-}
-
-.print{
-    background:#16a34a;
-    color:#fff;
-}
-
-.clear{
-    background:#dc2626;
-    color:#fff;
-}
-
-/* =========================
-   PAGE
-========================= */
-
-#formContainer{
-    padding:20px 0;
-}
-
-.page{
-    position:relative;
-    width:794px;
-    height:1123px;
-    margin:0 auto 20px auto;
-    background:white;
-    box-shadow:0 2px 12px rgba(0,0,0,.3);
-    overflow:hidden;
-}
-
-.page canvas{
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-}
-
-/* =========================
-   INPUT
-========================= */
-
-.field{
-    position:absolute;
-    z-index:10;
-
-    border:1px solid #222;
-    background:rgba(255,255,255,.90);
-
-    height:27px;
-    padding:2px 5px;
-
-    font-size:13px;
-    color:#111;
-
-    outline:none;
-}
-
-.field:focus{
-    border:2px solid #0066cc;
-    background:#fff;
-}
-
-.field::placeholder{
-    color:#777;
-}
-
-/* transparent fields */
-
-.transparent{
-    border:1px solid rgba(0,0,0,.35);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px){
-
-    #formContainer{
-        padding:10px 0;
-    }
-
-    .page{
-        width:96vw;
-        height:calc(96vw * 1.4142);
-        margin-bottom:15px;
-    }
-
-    .field{
-        height:3.2%;
-        font-size:10px;
-        padding:1px 3px;
-    }
-
-}
-
-/* =========================
-   PRINT
-========================= */
-
-@page{
-    size:A4;
-    margin:0;
-}
-
-@media print{
-
-    body{
-        background:white;
-    }
-
-    .toolbar{
-        display:none;
-    }
-
-    #formContainer{
-        padding:0;
-    }
-
-    .page{
-        width:210mm;
-        height:297mm;
-        margin:0;
-        box-shadow:none;
-        page-break-after:always;
-    }
-
-    .field{
-        border:0;
-        background:transparent;
-        color:#000;
-    }
-
-}
-</style>
-</head>
-
-<body>
-
-<div class="toolbar">
-
-    <button class="save" onclick="saveForm()">
-        💾 माहिती सेव्ह
-    </button>
-
-    <button class="print" onclick="window.print()">
-        🖨️ Print / PDF
-    </button>
-
-    <button class="clear" onclick="clearForm()">
-        🗑️ Clear
-    </button>
-
-</div>
-
-<div id="formContainer"></div>
-
-<script>
-
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-const PDF_FILE = "PEEK-KARJ-FORM.pdf";
-
-const container = document.getElementById("formContainer");
-
-
-/* ==========================================
-   FIELD FUNCTION
-========================================== */
-
-function field(page,name,x,y,w,h,placeholder="",type="text"){
-
-    let el;
-
-    if(type==="textarea"){
-        el=document.createElement("textarea");
-    }else{
-        el=document.createElement("input");
-        el.type=type;
-    }
-
-    el.className="field";
-    el.id=name;
-    el.name=name;
-
-    el.placeholder=placeholder;
-
-    el.style.left=x+"%";
-    el.style.top=y+"%";
-    el.style.width=w+"%";
-    el.style.height=h+"%";
-
-    page.appendChild(el);
-
-    return el;
-}
-
-
-/* ==========================================
-   PDF
-========================================== */
-
-async function createForm(){
-
-    try{
-
-        const pdf =
-            await pdfjsLib.getDocument(PDF_FILE).promise;
-
-        for(let i=1;i<=pdf.numPages;i++){
-
-            const pdfPage=await pdf.getPage(i);
-
-            const viewport=
-                pdfPage.getViewport({scale:1.5});
-
-            const page=document.createElement("div");
-
-            page.className="page";
-            page.id="page-"+i;
-
-            const canvas=document.createElement("canvas");
-
-            canvas.width=viewport.width;
-            canvas.height=viewport.height;
-
-            page.appendChild(canvas);
-
-            container.appendChild(page);
-
-            await pdfPage.render({
-                canvasContext:canvas.getContext("2d"),
-                viewport:viewport
-            }).promise;
-
-
-            /* =====================================
-               PAGE 1
-            ===================================== */
-
-            if(i===1){
-
-                /* अर्जदार 1 */
-
-                field(
-                    page,
-                    "applicant1",
-                    30,16,25,3,
-                    "अर्जदाराचे नाव"
-                );
-
-                field(
-                    page,
-                    "age1",
-                    70,16,12,3,
-                    "वय"
-                );
-
-
-                /* अर्जदार 2 */
-
-                field(
-                    page,
-                    "applicant2",
-                    30,19.5,25,3,
-                    "अर्जदाराचे नाव"
-                );
-
-                field(
-                    page,
-                    "age2",
-                    70,19.5,12,3,
-                    "वय"
-                );
-
-
-                /* मोबाईल */
-
-                field(
-                    page,
-                    "mobile",
-                    73,24,20,3,
-                    "मोबाईल नंबर",
-                    "tel"
-                );
-
-
-                /* पहिला अर्जदार */
-
-                field(
-                    page,
-                    "person1",
-                    20,34,31,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "person1Age",
-                    73,34,12,3,
-                    "वय"
-                );
-
-
-                /* दुसरा अर्जदार */
-
-                field(
-                    page,
-                    "person2",
-                    20,38,31,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "person2Age",
-                    73,38,12,3,
-                    "वय"
-                );
-
-
-                /* कुटुंबातील सदस्य */
-
-                field(
-                    page,
-                    "family1",
-                    23,65,31,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "relation1",
-                    55,65,14,3,
-                    "नाते"
-                );
-
-                field(
-                    page,
-                    "dependent1",
-                    70,65,13,3,
-                    "होय/नाही"
-                );
-
-                field(
-                    page,
-                    "income1",
-                    84,65,13,3,
-                    "रक्कम"
-                );
-
-
-                field(
-                    page,
-                    "family2",
-                    23,69,31,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "relation2",
-                    55,69,14,3,
-                    "नाते"
-                );
-
-                field(
-                    page,
-                    "dependent2",
-                    70,69,13,3,
-                    "होय/नाही"
-                );
-
-                field(
-                    page,
-                    "income2",
-                    84,69,13,3,
-                    "रक्कम"
-                );
-
-
-                /* कुटुंब प्रमुख */
-
-                field(
-                    page,
-                    "familyHead",
-                    48,75.5,40,3,
-                    "कुटुंब प्रमुखाचे नाव"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 2
-            ===================================== */
-
-            if(i===2){
-
-                field(
-                    page,
-                    "landVillage",
-                    25,13,25,3,
-                    "गाव"
-                );
-
-                field(
-                    page,
-                    "landTaluka",
-                    55,13,20,3,
-                    "तालुका"
-                );
-
-                field(
-                    page,
-                    "landDistrict",
-                    77,13,17,3,
-                    "जिल्हा"
-                );
-
-
-                /* जमीन */
-
-                field(
-                    page,
-                    "landArea",
-                    25,24,17,3,
-                    "क्षेत्र"
-                );
-
-                field(
-                    page,
-                    "surveyNo",
-                    45,24,18,3,
-                    "गट नं."
-                );
-
-
-                /* पीक 1 */
-
-                field(
-                    page,
-                    "crop1",
-                    22,39,18,3,
-                    "पीक"
-                );
-
-                field(
-                    page,
-                    "cropArea1",
-                    41,39,15,3,
-                    "क्षेत्र"
-                );
-
-                field(
-                    page,
-                    "cropSurvey1",
-                    57,39,15,3,
-                    "गट नं."
-                );
-
-
-                /* पीक 2 */
-
-                field(
-                    page,
-                    "crop2",
-                    22,44,18,3,
-                    "पीक"
-                );
-
-                field(
-                    page,
-                    "cropArea2",
-                    41,44,15,3,
-                    "क्षेत्र"
-                );
-
-                field(
-                    page,
-                    "cropSurvey2",
-                    57,44,15,3,
-                    "गट नं."
-                );
-
-
-                /* पीक 3 */
-
-                field(
-                    page,
-                    "crop3",
-                    22,49,18,3,
-                    "पीक"
-                );
-
-                field(
-                    page,
-                    "cropArea3",
-                    41,49,15,3,
-                    "क्षेत्र"
-                );
-
-                field(
-                    page,
-                    "cropSurvey3",
-                    57,49,15,3,
-                    "गट नं."
-                );
-
-
-                field(
-                    page,
-                    "irrigation",
-                    25,61,65,3,
-                    "सिंचनाची माहिती"
-                );
-
-                field(
-                    page,
-                    "loanRequirement",
-                    25,67,65,3,
-                    "कर्जाची आवश्यकता"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 3
-            ===================================== */
-
-            if(i===3){
-
-                field(
-                    page,
-                    "annualIncome",
-                    65,13,25,3,
-                    "वार्षिक उत्पन्न"
-                );
-
-
-                field(
-                    page,
-                    "business",
-                    25,22,65,3,
-                    "व्यवसाय / उत्पन्नाचे साधन"
-                );
-
-
-                /* आर्थिक माहिती */
-
-                field(
-                    page,
-                    "sourceIncome",
-                    25,35,60,3,
-                    "उत्पन्नाचे साधन"
-                );
-
-                field(
-                    page,
-                    "monthlyIncome",
-                    65,40,25,3,
-                    "उत्पन्न"
-                );
-
-
-                /* खर्च */
-
-                field(
-                    page,
-                    "expense1",
-                    30,48,35,3,
-                    "खर्च"
-                );
-
-                field(
-                    page,
-                    "expenseAmount1",
-                    70,48,20,3,
-                    "रक्कम"
-                );
-
-
-                field(
-                    page,
-                    "expense2",
-                    30,53,35,3,
-                    "खर्च"
-                );
-
-                field(
-                    page,
-                    "expenseAmount2",
-                    70,53,20,3,
-                    "रक्कम"
-                );
-
-
-                field(
-                    page,
-                    "expense3",
-                    30,58,35,3,
-                    "खर्च"
-                );
-
-                field(
-                    page,
-                    "expenseAmount3",
-                    70,58,20,3,
-                    "रक्कम"
-                );
-
-
-                field(
-                    page,
-                    "otherDetails",
-                    20,72,70,7,
-                    "इतर माहिती",
-                    "textarea"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 4
-            ===================================== */
-
-            if(i===4){
-
-                field(
-                    page,
-                    "farmerName",
-                    25,14,35,3,
-                    "शेतकऱ्याचे नाव"
-                );
-
-                field(
-                    page,
-                    "farmDetails",
-                    25,23,65,5,
-                    "शेतीची माहिती",
-                    "textarea"
-                );
-
-
-                field(
-                    page,
-                    "loanPurpose",
-                    25,36,65,6,
-                    "कर्जाचा उद्देश",
-                    "textarea"
-                );
-
-
-                field(
-                    page,
-                    "declaration",
-                    20,51,70,10,
-                    "घोषणा / माहिती",
-                    "textarea"
-                );
-
-
-                field(
-                    page,
-                    "applicantSignature1",
-                    15,76,30,3,
-                    "अर्जदार 1"
-                );
-
-                field(
-                    page,
-                    "applicantSignature2",
-                    60,76,30,3,
-                    "अर्जदार 2"
-                );
-
-
-                field(
-                    page,
-                    "applicationDate",
-                    20,87,25,3,
-                    "दिनांक",
-                    "date"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 5
-            ===================================== */
-
-            if(i===5){
-
-                /* जामीनदार */
-
-                field(
-                    page,
-                    "guarantor1",
-                    20,32,25,3,
-                    "जामीनदाराचे नाव"
-                );
-
-                field(
-                    page,
-                    "guarantorAccount1",
-                    47,32,23,3,
-                    "Saving A/c"
-                );
-
-                field(
-                    page,
-                    "guarantorRemark1",
-                    72,32,23,3,
-                    "Remark"
-                );
-
-
-                field(
-                    page,
-                    "guarantor2",
-                    20,37,25,3,
-                    "जामीनदाराचे नाव"
-                );
-
-                field(
-                    page,
-                    "guarantorAccount2",
-                    47,37,23,3,
-                    "Saving A/c"
-                );
-
-                field(
-                    page,
-                    "guarantorRemark2",
-                    72,37,23,3,
-                    "Remark"
-                );
-
-
-                /* जमीन / कर्ज */
-
-                field(
-                    page,
-                    "acNumber",
-                    20,54,25,3,
-                    "A/C Number"
-                );
-
-                field(
-                    page,
-                    "purpose",
-                    47,54,20,3,
-                    "Purpose"
-                );
-
-                field(
-                    page,
-                    "amount",
-                    69,54,20,3,
-                    "O/S"
-                );
-
-
-                field(
-                    page,
-                    "loanAccount",
-                    20,64,25,3,
-                    "Loan Account Number"
-                );
-
-                field(
-                    page,
-                    "sanctionAmount",
-                    50,64,20,3,
-                    "Sanction Amount"
-                );
-
-                field(
-                    page,
-                    "overdue",
-                    72,64,18,3,
-                    "Overdue"
-                );
-
-
-                field(
-                    page,
-                    "visitDate",
-                    20,85,25,3,
-                    "दिनांक",
-                    "date"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 6
-               स्वयंघोषणापत्र
-            ===================================== */
-
-            if(i===6){
-
-                field(
-                    page,
-                    "selfName",
-                    30,20,35,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "selfAge",
-                    70,20,12,3,
-                    "वय"
-                );
-
-
-                field(
-                    page,
-                    "selfVillage",
-                    20,27,25,3,
-                    "गाव"
-                );
-
-                field(
-                    page,
-                    "selfTaluka",
-                    50,27,22,3,
-                    "तालुका"
-                );
-
-                field(
-                    page,
-                    "selfDistrict",
-                    75,27,17,3,
-                    "जिल्हा"
-                );
-
-
-                field(
-                    page,
-                    "selfDate",
-                    20,76,30,3,
-                    "दिनांक",
-                    "date"
-                );
-
-
-                field(
-                    page,
-                    "selfPlace",
-                    20,81,30,3,
-                    "स्थळ"
-                );
-
-            }
-
-
-            /* =====================================
-               PAGE 7
-               शपथपत्र
-            ===================================== */
-
-            if(i===7){
-
-                field(
-                    page,
-                    "affName",
-                    30,20,35,3,
-                    "नाव"
-                );
-
-                field(
-                    page,
-                    "affAge",
-                    70,20,12,3,
-                    "वय"
-                );
-
-
-                field(
-                    page,
-                    "affVillage",
-                    20,27,25,3,
-                    "गाव"
-                );
-
-                field(
-                    page,
-                    "affTaluka",
-                    50,27,22,3,
-                    "तालुका"
-                );
-
-                field(
-                    page,
-                    "affDistrict",
-                    75,27,17,3,
-                    "जिल्हा"
-                );
-
-
-                field(
-                    page,
-                    "affDate",
-                    20,77,30,3,
-                    "दिनांक",
-                    "date"
-                );
-
-
-                field(
-                    page,
-                    "affPlace",
-                    20,82,30,3,
-                    "स्थळ"
-                );
-
-            }
-
-        }
-
-        loadData();
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML =
-        "<h2 style='text-align:center;color:red'>"+
-        "PDF Load होत नाही. PDF चे नाव PEEK-KARJ-FORM.pdf आहे का ते तपासा."+
-        "</h2>";
-
-    }
-
-}
-
-
-/* ==========================================
-   SAVE
-========================================== */
-
-function saveForm(){
-
-    const data={};
-
-    document
-    .querySelectorAll(".field")
-    .forEach(input=>{
-
-        data[input.name]=input.value;
-
-    });
-
-    localStorage.setItem(
-        "BOM_AGRICULTURE_FORM",
-        JSON.stringify(data)
+/* =====================================
+   PAGE 1 - EXACT OVERLAY
+===================================== */
+
+if(i === 1){
+
+    /* ================================
+       अर्जदार 1
+    ================================= */
+
+    field(
+        page,
+        "applicant1",
+        31.0, 15.7,
+        39.0, 3.0,
+        "अर्जदाराचे नाव"
     );
 
-    alert("✅ माहिती सेव्ह झाली.");
-
-}
-
-
-/* ==========================================
-   LOAD
-========================================== */
-
-function loadData(){
-
-    const saved=
-        localStorage.getItem("BOM_AGRICULTURE_FORM");
-
-    if(!saved) return;
-
-    const data=JSON.parse(saved);
-
-    Object.keys(data).forEach(key=>{
-
-        const input=
-            document.getElementById(key);
-
-        if(input){
-            input.value=data[key];
-        }
-
-    });
-
-}
-
-
-/* ==========================================
-   CLEAR
-========================================== */
-
-function clearForm(){
-
-    const ok=
-        confirm(
-            "सर्व भरलेली माहिती Delete करायची आहे का?"
-        );
-
-    if(!ok) return;
-
-    localStorage.removeItem(
-        "BOM_AGRICULTURE_FORM"
+    field(
+        page,
+        "age1",
+        70.8, 15.7,
+        10.5, 3.0,
+        "वय"
     );
 
-    document
-    .querySelectorAll(".field")
-    .forEach(input=>{
 
-        input.value="";
+    /* ================================
+       अर्जदार 2
+    ================================= */
 
-    });
+    field(
+        page,
+        "applicant2",
+        31.0, 19.0,
+        39.0, 3.0,
+        "अर्जदाराचे नाव"
+    );
+
+    field(
+        page,
+        "age2",
+        70.8, 19.0,
+        10.5, 3.0,
+        "वय"
+    );
+
+
+    /* ================================
+       मोबाईल
+    ================================= */
+
+    field(
+        page,
+        "mobile",
+        73.0, 23.8,
+        20.0, 3.0,
+        "मोबाईल नंबर",
+        "tel"
+    );
+
+
+    /* ================================
+       अर्जदाराचे नाव
+    ================================= */
+
+    field(
+        page,
+        "person1",
+        23.0, 53.5,
+        42.0, 3.0,
+        "श्री / श्रीमती"
+    );
+
+    field(
+        page,
+        "person1Age",
+        68.0, 53.5,
+        12.0, 3.0,
+        "वय"
+    );
+
+
+    /* ================================
+       दुसरा अर्जदार
+    ================================= */
+
+    field(
+        page,
+        "person2",
+        23.0, 57.5,
+        42.0, 3.0,
+        "श्री / श्रीमती"
+    );
+
+    field(
+        page,
+        "person2Age",
+        68.0, 57.5,
+        12.0, 3.0,
+        "वय"
+    );
+
+
+    /* ================================
+       कुटुंबातील व्यक्ती - Row 1
+    ================================= */
+
+    field(
+        page,
+        "family1",
+        24.0, 68.5,
+        29.0, 3.0,
+        "नाव"
+    );
+
+    field(
+        page,
+        "relation1",
+        56.0, 68.5,
+        13.0, 3.0,
+        "नाते"
+    );
+
+    field(
+        page,
+        "dependent1",
+        70.5, 68.5,
+        12.0, 3.0,
+        "होय/नाही"
+    );
+
+    field(
+        page,
+        "income1",
+        84.0, 68.5,
+        12.0, 3.0,
+        "रक्कम"
+    );
+
+
+    /* ================================
+       कुटुंबातील व्यक्ती - Row 2
+    ================================= */
+
+    field(
+        page,
+        "family2",
+        24.0, 72.5,
+        29.0, 3.0,
+        "नाव"
+    );
+
+    field(
+        page,
+        "relation2",
+        56.0, 72.5,
+        13.0, 3.0,
+        "नाते"
+    );
+
+    field(
+        page,
+        "dependent2",
+        70.5, 72.5,
+        12.0, 3.0,
+        "होय/नाही"
+    );
+
+    field(
+        page,
+        "income2",
+        84.0, 72.5,
+        12.0, 3.0,
+        "रक्कम"
+    );
+
+
+    /* ================================
+       कुटुंब प्रमुख
+    ================================= */
+
+    field(
+        page,
+        "familyHead",
+        48.0, 78.0,
+        40.0, 3.0,
+        "कुटुंब प्रमुखाचे नाव"
+    );
 
 }
-
-
-/* ==========================================
-   START
-========================================== */
-
-createForm();
-
-</script>
-
-</body>
-</html>
