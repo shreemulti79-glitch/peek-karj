@@ -6,11 +6,10 @@
 
 <title>बँक ऑफ महाराष्ट्र - पीक कर्ज अर्ज</title>
 
-<!-- Marathi Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
 
 <style>
@@ -22,73 +21,77 @@ rel="stylesheet">
 body{
     margin:0;
     background:#ddd;
-    color:#000;
-
-    font-family:
-    "Tiro Devanagari Marathi",
-    "Noto Serif Devanagari",
-    serif;
+    color:#111;
+    font-family:"Noto Sans Devanagari",Arial,sans-serif;
 }
 
 
 /* =========================
-   BUTTON BAR
+   BUTTON
 ========================= */
 
 .toolbar{
     position:sticky;
     top:0;
-    z-index:9999;
+    z-index:1000;
 
     background:#075ca8;
-    padding:10px;
+    padding:8px;
 
-    display:flex;
-    justify-content:center;
-    gap:10px;
+    text-align:center;
 }
 
-button{
+.toolbar button{
     border:0;
     border-radius:5px;
-    padding:10px 18px;
+    padding:9px 16px;
+    margin:2px;
+
     font-family:inherit;
-    font-weight:bold;
-    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
 }
 
 .save{
-    background:white;
+    background:#fff;
     color:#075ca8;
 }
 
 .print{
     background:#159447;
-    color:white;
+    color:#fff;
 }
 
 .clear{
     background:#d92323;
-    color:white;
+    color:#fff;
 }
 
 
 /* =========================
-   A4
+   A4 PAGE
 ========================= */
 
-.form{
+.page{
+
     width:210mm;
-    min-height:297mm;
+    height:297mm;
+
+    margin:12px auto;
 
     background:#fff;
 
-    margin:15px auto;
-    padding:10mm 12mm;
-
     position:relative;
 
-    box-shadow:0 2px 12px #888;
+    padding:
+    8mm
+    9mm
+    13mm
+    9mm;
+
+    overflow:hidden;
+
+    box-shadow:0 2px 10px #777;
 
     page-break-after:always;
 }
@@ -99,72 +102,131 @@ button{
 ========================= */
 
 .header{
-    border-bottom:2px solid #000;
-    padding-bottom:4px;
-    margin-bottom:8px;
 
-    position:relative;
+    border-bottom:1.2px solid #111;
+
+    padding-bottom:2mm;
+
 }
 
-.header-grid{
+.header-row{
+
     display:grid;
-    grid-template-columns:1fr 2fr 1fr;
-    align-items:center;
+
+    grid-template-columns:
+    1fr
+    2.5fr
+    1fr;
+
+    align-items:start;
+
 }
 
-.code{
-    font-size:12px;
-    font-weight:bold;
+.form-code{
+
+    font-size:10px;
+    font-weight:800;
+
 }
 
-.bank{
+.bank-name{
+
     text-align:center;
-    font-size:23px;
-    font-weight:bold;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    line-height:1.1;
+
 }
 
-.year{
+.application{
+
     text-align:right;
-    font-size:13px;
-    font-weight:bold;
+
+    font-size:10px;
+
+    font-weight:700;
+
 }
 
 .office{
-    text-align:center;
-    font-size:12px;
-    font-weight:bold;
-}
 
-.branch{
     text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    margin-top:6px;
-}
 
-.subtitle{
-    text-align:center;
-    font-size:13px;
-    font-weight:bold;
+    font-size:10px;
+
+    font-weight:700;
+
+    margin-top:1mm;
+
 }
 
 
 /* =========================
-   LOGO
+   BANK LOGO
 ========================= */
 
-.logo{
-    width:100px;
-    height:38px;
+.bank-logo{
+
+    width:47mm;
+    height:19mm;
 
     border:1px solid #777;
 
     display:flex;
-    align-items:center;
+
     justify-content:center;
 
-    font-size:10px;
+    align-items:center;
+
     text-align:center;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================
+   BRANCH
+========================= */
+
+.branch-row{
+
+    display:grid;
+
+    grid-template-columns:
+    48mm
+    1fr
+    45mm;
+
+    align-items:center;
+
+    margin-top:3mm;
+
+}
+
+.branch{
+
+    text-align:center;
+
+    font-size:19px;
+
+    font-weight:800;
+
+}
+
+.form-title{
+
+    text-align:center;
+
+    font-size:10px;
+
+    font-weight:700;
+
 }
 
 
@@ -172,111 +234,93 @@ button{
    TEXT
 ========================= */
 
-.txt{
-    font-size:13px;
-    line-height:1.65;
+.text{
+
+    font-size:10.5px;
+
+    line-height:1.55;
+
 }
 
 .bold{
-    font-weight:bold;
+
+    font-weight:800;
+
 }
 
 .center{
+
     text-align:center;
+
 }
 
 .right{
+
     text-align:right;
+
 }
 
 
 /* =========================
-   FORM ROW
+   INPUT
 ========================= */
 
-.row{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin:4px 0;
-}
+input{
 
-label{
-    font-size:13px;
-    font-weight:bold;
-}
+    font-family:"Noto Sans Devanagari",Arial,sans-serif;
 
-input,
-textarea,
-select{
+    font-size:10.5px;
+
+    color:#111;
 
     border:0;
-    border-bottom:1px solid #000;
+
+    border-bottom:1px solid #111;
+
+    background:transparent;
 
     outline:none;
 
-    background:#fff;
+    padding:0 2px;
 
-    font-family:
-    "Tiro Devanagari Marathi",
-    serif;
+    height:5mm;
 
-    font-size:13px;
-
-    padding:1px 3px;
-
-    color:#000;
 }
 
-input:focus,
-textarea:focus{
-    background:#ffffd8;
+input:focus{
+
+    background:#fffbd0;
+
 }
 
-.w100{width:100%}
-.w80{width:80%}
-.w60{width:60%}
-.w50{width:50%}
-.w40{width:40%}
-.w30{width:30%}
-.w25{width:25%}
-.w20{width:20%}
-.w15{width:15%}
+.w20{width:20mm}
+.w25{width:25mm}
+.w30{width:30mm}
+.w35{width:35mm}
+.w40{width:40mm}
+.w45{width:45mm}
+.w50{width:50mm}
+.w60{width:60mm}
+.w70{width:70mm}
+.w80{width:80mm}
 
 
 /* =========================
-   TABLE
+   ROW
 ========================= */
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin:7px 0;
+.row{
 
-    font-family:
-    "Tiro Devanagari Marathi",
-    serif;
+    display:flex;
 
-    font-size:11.5px;
-}
+    align-items:baseline;
 
-th,
-td{
-    border:1px solid #000;
-    padding:4px;
-    vertical-align:middle;
-}
+    gap:3px;
 
-th{
-    font-weight:bold;
-    text-align:center;
-}
+    min-height:6mm;
 
-td input{
-    width:100%;
-    border:0;
-    border-bottom:1px solid #777;
-    font-size:11px;
+    font-size:10.5px;
+
 }
 
 
@@ -285,58 +329,106 @@ td input{
 ========================= */
 
 .section{
-    font-size:14px;
-    font-weight:bold;
-    margin-top:10px;
-    margin-bottom:5px;
-}
 
-.line{
-    border-bottom:1px solid #000;
-    display:inline-block;
-    min-width:150px;
-}
+    font-size:11px;
 
+    font-weight:800;
 
-/* =========================
-   DECLARATION
-========================= */
+    margin-top:3mm;
 
-.declaration{
-    font-size:14px;
-    font-weight:bold;
-    line-height:1.9;
-    text-align:justify;
-}
+    margin-bottom:1.5mm;
 
-.declaration input{
-    min-width:100px;
 }
 
 
 /* =========================
-   AFFIDAVIT
+   TABLE
 ========================= */
 
-.affidavit{
-    border:3px double #000;
-    min-height:277mm;
-    padding:15mm 15mm;
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:2mm;
+
+    margin-bottom:3mm;
+
+    font-size:8.7px;
+
 }
 
-.aff-title{
+th,
+td{
+
+    border:1px solid #111;
+
+    padding:1.5mm 1mm;
+
+    line-height:1.25;
+
+    vertical-align:middle;
+
+}
+
+th{
+
     text-align:center;
-    font-size:27px;
-    font-weight:bold;
-    text-decoration:underline;
-    margin-bottom:28px;
+
+    font-weight:800;
+
 }
 
-.aff-text{
-    font-size:15px;
-    font-weight:bold;
-    line-height:2;
-    text-align:justify;
+td input{
+
+    width:100%;
+
+    border:0;
+
+    height:6mm;
+
+    font-size:9px;
+
+}
+
+.family td{
+
+    height:9mm;
+
+}
+
+.crop td{
+
+    height:12mm;
+
+}
+
+
+/* =========================
+   SIGNATURE
+========================= */
+
+.signatures{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:35mm;
+
+    margin-top:18mm;
+
+    font-size:10px;
+
+}
+
+.sign-line{
+
+    height:10mm;
+
+    border-bottom:1px solid #111;
+
 }
 
 
@@ -345,18 +437,116 @@ td input{
 ========================= */
 
 .footer{
-    position:absolute;
-    bottom:4mm;
-    left:12mm;
-    right:12mm;
 
-    border-top:1px solid #aaa;
+    position:absolute;
+
+    left:9mm;
+
+    right:9mm;
+
+    bottom:5mm;
+
+    height:8mm;
+
+    background:#ddd;
+
+    border-top:1px solid #888;
 
     text-align:center;
 
-    font-size:9px;
-    color:#444;
-    padding-top:3px;
+    font-size:7.5px;
+
+    padding-top:1mm;
+
+}
+
+.page-number{
+
+    position:absolute;
+
+    bottom:1.5mm;
+
+    left:0;
+
+    right:0;
+
+    text-align:center;
+
+    font-size:8px;
+
+}
+
+
+/* =========================
+   AFFIDAVIT
+========================= */
+
+.double-border{
+
+    height:100%;
+
+    min-height:270mm;
+
+    border:2px solid #111;
+
+    padding:12mm 11mm;
+
+}
+
+.aff-title{
+
+    text-align:center;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    text-decoration:underline;
+
+    margin-bottom:17mm;
+
+}
+
+.aff-text{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    line-height:2;
+
+    text-align:justify;
+
+}
+
+.aff-text input{
+
+    font-size:12px;
+
+}
+
+.aff-details{
+
+    margin-top:18mm;
+
+    font-size:11px;
+
+    line-height:2.1;
+
+}
+
+.aff-sign{
+
+    position:absolute;
+
+    right:25mm;
+
+    bottom:55mm;
+
+    text-align:center;
+
+    font-size:11px;
+
 }
 
 
@@ -365,31 +555,45 @@ td input{
 ========================= */
 
 @page{
+
     size:A4;
+
     margin:0;
+
 }
 
 @media print{
 
     body{
+
         background:#fff;
+
     }
 
     .toolbar{
+
         display:none;
+
     }
 
-    .form{
+    .page{
+
         margin:0;
+
         box-shadow:none;
+
         width:210mm;
-        min-height:297mm;
+
+        height:297mm;
+
     }
 
-    input,
-    textarea{
-        background:transparent !important;
+    input{
+
+        background:transparent!important;
+
     }
+
 }
 
 
@@ -399,30 +603,14 @@ td input{
 
 @media(max-width:800px){
 
-    body{
-        background:#fff;
-    }
+    .page{
 
-    .form{
-        width:100%;
-        min-height:auto;
-        margin:0;
-        padding:15px;
-        box-shadow:none;
-    }
+        transform-origin:top left;
 
-    .bank{
-        font-size:19px;
-    }
+        transform:scale(.72);
 
-    table{
-        font-size:9px;
-    }
+        margin-bottom:-80mm;
 
-    .txt,
-    label,
-    input{
-        font-size:11px;
     }
 
 }
@@ -430,16 +618,13 @@ td input{
 </style>
 </head>
 
+
 <body>
 
 
-<!-- =========================
-     BUTTONS
-========================= -->
-
 <div class="toolbar">
 
-<button class="save" onclick="saveForm()">
+<button class="save" onclick="saveData()">
 💾 माहिती सेव्ह
 </button>
 
@@ -447,573 +632,807 @@ td input{
 🖨️ Print / PDF
 </button>
 
-<button class="clear" onclick="clearForm()">
+<button class="clear" onclick="clearData()">
 🗑️ Clear
 </button>
 
 </div>
 
 
-
 <!-- =====================================================
-     PAGE 1
+PAGE 1
 ===================================================== -->
 
-<div class="form" id="page1">
+<div class="page">
 
 <div class="header">
 
-<div class="header-grid">
+<div class="header-row">
 
-<div class="code">
+<div class="form-code">
 फ-३३ (F-138)
 </div>
 
-<div class="bank">
+<div class="bank-name">
 बँक ऑफ महाराष्ट्र
 </div>
 
-<div class="year">
-अर्ज क्र. <input id="applicationNo" style="width:80px"><br>
+<div class="application">
+अर्ज क्र. <input id="appNo" class="w20">
+<br>
 वर्ष - 2026-2027
 </div>
 
 </div>
 
 <div class="office">
-मुख्य कार्यालय लोकमंगल,1501, शिवाजीनगर, पुणे 411005.
+मुख्य कार्यालय लोकमंगल,1501, शिवाजीनगर, पुणे ४११००५.
 </div>
 
 </div>
 
 
-<div style="display:flex;align-items:center;gap:20px">
+<div class="branch-row">
 
-<div class="logo">
+<div class="bank-logo">
 बँक ऑफ महाराष्ट्र<br>
 Bank of Maharashtra
 </div>
 
-<div style="flex:1">
+<div>
 
 <div class="branch">
 शाखा :- DHAWADA
 </div>
 
-<div class="subtitle">
+<div class="form-title">
 " शेती कर्जासाठी अर्ज "
 </div>
 
 </div>
 
+<div></div>
+
 </div>
 
 
-<p class="txt center">
-(पहिल्यांदा कर्ज मागणी करताना किंवा माहितीत बदल झाल्यास भरावयाचा अर्ज)
-<br>
-(एकदा भरलेला अर्ज जपून ठेवावा)
-</p>
+<div class="center text">
+
+(पहिल्यांदा कर्ज मागणी करताना किंवा काही माहितीत बदल झाल्यास भरावयाचा अर्ज)<br>
+
+(एक बार भरलेला अर्ज जपून ठेवावा)
+
+</div>
 
 
-<div class="txt">
+<div class="text" style="margin-top:4mm">
+
 प्रति,<br>
+
 मा. शाखा व्यवस्थापक बँक ऑफ महाराष्ट्र<br>
+
 अर्जदाराचे / अर्जदारांचे :
+
 </div>
 
 
 <div class="row">
-<label>१)</label>
-<input id="applicant1" class="w40" placeholder="अर्जदाराचे नाव">
-<label>वय :</label>
-<input id="age1" class="w15">
+
+१)
+
+<input id="name1" class="w50">
+
+वय :
+
+<input id="age1" class="w20">
+
 </div>
 
 
 <div class="row">
-<label>२)</label>
-<input id="applicant2" class="w40" placeholder="अर्जदाराचे नाव">
-<label>वय :</label>
-<input id="age2" class="w15">
+
+२)
+
+<input id="name2" class="w50">
+
+वय :
+
+<input id="age2" class="w20">
+
 </div>
 
 
-<div class="row">
-<label>पत्ता</label>
-<b>ADGAON</b>
-<label>ता</label>
-<b>BHOKARDAN</b>
-<label>जि</label>
-<b>JALNA</b>
+<div class="row bold">
 
-<label>मो.नं</label>
-<input id="mobile" class="w20">
-</div>
+पत्ता &nbsp; ADGAON
 
+&nbsp;&nbsp; ता &nbsp; BHOKARDAN
 
-<p class="txt">
-<strong>महोदय,</strong>
-</p>
+&nbsp;&nbsp; जि &nbsp; JALNA
 
+&nbsp;&nbsp; मो.नं
 
-<div class="txt">
-मी / आम्ही या अर्जाद्वारे एकूण रु.
-<input id="loanAmount" class="w15">
-ची कर्ज मागणी आपणाकडे करत आहोत व त्यासाठी आवश्यक माहिती खालील प्रमाणे आहे.
+<input id="mobile" class="w30">
+
 </div>
 
 
 <div class="section">
-कर्ज प्रकार पीक कर्ज &nbsp;&nbsp;&nbsp; रक्कम रु.
+
+महोदय,
+
 </div>
 
-<div class="txt bold">
+
+<div class="text">
+
+मी / आम्ही या अर्जाद्वारे एकूण रु.
+
+<input id="loanAmount" class="w25">
+
+ची कर्ज मागणी आपणाकडे करत आहोत व त्या साठी आवश्यक माहिती खालील प्रमाणे आहे.
+
+</div>
+
+
+<div class="row bold">
+
+कर्ज प्रकार पीक कर्ज
+
+&nbsp;&nbsp;&nbsp;
+
+रक्कम रु.
+
+</div>
+
+
+<div class="text bold">
+
 1. पीक उत्पादन कर्ज (परिशिष्ट 'अ' प्रमाणे)
+
 </div>
 
-<div class="txt bold">
+
+<div class="text bold" style="margin-left:10mm">
+
 उद्देश :-
+
 </div>
 
-<div class="txt bold">
-क) महाबँक किसान क्रेडिट कार्ड (MKCC)
+
+<div class="text bold" style="margin-left:5mm">
+
+क) महाबँक किसान क्रेडिट कार्ड ( MKCC )
+
 </div>
 
 
 <div class="section center">
+
 ( सर्व साधारण माहिती )
+
 </div>
 
 
 <div class="section">
+
 अर्जदारांचे नाव :
+
 </div>
 
 
 <div class="row">
-<label>क) श्री / श्रीमती :-</label>
-<input id="mainName1" class="w40">
 
-<label>वय :-</label>
-<input id="mainAge1" class="w15">
+क) श्री / श्रीमती :-
+
+<input id="mainName1" class="w50">
+
+वय :-
+
+<input id="mainAge1" class="w20">
+
+</div>
+
+
+<div class="row bold">
+
+ख) गाव :- ADGAON
+
+&nbsp;&nbsp;&nbsp;
+
+तालुका :- BHOKARDAN
+
+&nbsp;&nbsp;&nbsp;
+
+जिल्हा :- JALNA
+
 </div>
 
 
 <div class="row">
-<label>ख) गाव :- ADGAON</label>
-<label>तालुका :- BHOKARDAN</label>
-<label>जिल्हा :- JALNA</label>
+
+ग) श्री / श्रीमती :-
+
+<input id="mainName2" class="w50">
+
+वय :-
+
+<input id="mainAge2" class="w20">
+
 </div>
 
 
-<div class="row">
-<label>ग) श्री / श्रीमती :-</label>
-<input id="mainName2" class="w40">
+<div class="row bold">
 
-<label>वय :-</label>
-<input id="mainAge2" class="w15">
-</div>
+घ) गाव :- ADGAON
 
+&nbsp;&nbsp;&nbsp;
 
-<div class="row">
-<label>घ) गाव :- ADGAON</label>
-<label>तालुका :- BHOKARDAN</label>
-<label>जिल्हा :- JALNA</label>
+तालुका :- BHOKARDAN
+
+&nbsp;&nbsp;&nbsp;
+
+जिल्हा :- JALNA
+
 </div>
 
 
 <div class="section">
+
 1. कुटुंबातील व्यक्तींची माहिती :-
+
 </div>
 
 
-<table>
+<table class="family">
 
 <tr>
+
 <th>अनु क्र</th>
+
 <th>नाव</th>
+
 <th>नाते</th>
-<th>अर्जदारावर अवलंबून<br>आहेत का?</th>
-<th>उत्पन्न वार्षिक (रु.)</th>
+
+<th>
+अर्जदारावर अवलंबून<br>
+आहेत का?
+</th>
+
+<th>
+उत्पन्न वार्षिक ( रु. )
+</th>
+
 </tr>
 
+
 <tr>
+
 <td>क</td>
-<td><input id="family1"></td>
-<td><input id="relation1"></td>
-<td><input id="dependent1"></td>
-<td><input id="income1"></td>
+
+<td><input id="fam1"></td>
+
+<td><input id="rel1"></td>
+
+<td><input id="dep1"></td>
+
+<td><input id="inc1"></td>
+
 </tr>
 
+
 <tr>
+
 <td>ख</td>
-<td><input id="family2"></td>
-<td><input id="relation2"></td>
-<td><input id="dependent2"></td>
-<td><input id="income2"></td>
+
+<td><input id="fam2"></td>
+
+<td><input id="rel2"></td>
+
+<td><input id="dep2"></td>
+
+<td><input id="inc2"></td>
+
 </tr>
 
 </table>
 
 
-<div class="row">
-<label>
-1. कुटुंब प्रमुखाचे नाव (संयुक्त हिंदू कुटुंबासंबंधी) :-
-</label>
+<div class="text">
 
-<input id="familyHead" class="w40">
+1. कुटुंब प्रमुखाचे नाव
+( संयुक्त हिंदू कुटुंबासंबंधी ) :-
+
+<input id="familyHead" class="w60">
+
 </div>
 
 
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">1</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 2
+PAGE 2
 ===================================================== -->
 
-<div class="form" id="page2">
+<div class="page">
 
-<div class="logo">
-बँक ऑफ महाराष्ट्र
-</div>
+<div class="bank-logo">
 
-<div class="txt bold">
-2. अनुसूचित जाती/जमाती/अल्पसंख्यांक आहेत का
-<input id="minority" class="w30">
-</div>
+बँक ऑफ महाराष्ट्र<br>
+Bank of Maharashtra
 
-
-<div class="txt bold">
-a. लहान शेतकरी / अति लहान शेतकरी / शेतमजूर
-<input id="smallFarmer" class="w30">
 </div>
 
 
-<div class="section">
-3. बँकेत बचत खाते असल्यास :-
+<div class="row text">
+
+2 &nbsp; अनुसूचित जाती/जमाती/अल्पसंख्यांक आहेत का
+
+<input id="minority" class="w40">
+
 </div>
 
 
-<div class="row">
-<label>बँकेचे नाव :-</label>
-<b>बँक ऑफ महाराष्ट्र</b>
+<div class="row text">
 
-<label>शाखा :-</label>
-<b>DHAWADA</b>
-</div>
+a. &nbsp; लहान शेतकरी / अति लहान शेतकरी / शेतमजूर
 
+<input id="smallFarmer" class="w40">
 
-<div class="row">
-<label>b. बचत खाते क्र.</label>
-<input id="savingAccount" class="w50">
-</div>
-
-
-<div class="row">
-<label>c. कर्ज खाते क्र. 1) अर्जदार 1)</label>
-<input id="loanAccount1" class="w30">
-
-<label>अर्जदार 1)</label>
-<input id="loanAccount2" class="w20">
-</div>
-
-
-<div class="row">
-<label>2)</label>
-<input id="loanAccount3" class="w30">
-
-<label>2)</label>
-<input id="loanAccount4" class="w20">
 </div>
 
 
 <div class="section">
+
+3 &nbsp; बँकेत बचत खाते असल्यास :-
+
+</div>
+
+
+<div class="row text">
+
+a. बँकेचे नाव :- <b>बँक ऑफ महाराष्ट्र</b>
+
+&nbsp;&nbsp;
+
+शाखा :- <b>DHAWADA</b>
+
+</div>
+
+
+<div class="row text">
+
+b. बचत खाते क्र.
+
+<input id="saving" class="w60">
+
+</div>
+
+
+<div class="row text">
+
+c. कर्ज खाते क्र.
+
+&nbsp; 1) अर्जदार 1)
+
+<input id="loan1" class="w30">
+
+&nbsp; अर्जदार 1)
+
+<input id="loan2" class="w30">
+
+</div>
+
+
+<div class="row text">
+
+&nbsp;&nbsp; 2)
+
+<input id="loan3" class="w30">
+
+&nbsp;&nbsp; 2)
+
+<input id="loan4" class="w30">
+
+</div>
+
+
+<div class="section">
+
 २ - धारण केलेल्या जमिनी संबंधी माहिती
+( भाडेपट्ट्याने केलेली / हिस्स्याने केलेली ) :-
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>गाव</th>
-<th>सर्व्हे नं. / गट नं.</th>
-<th>हक्कासंबंधी माहिती<br>स्वतःची</th>
-<th>पुर्वाधी</th>
-<th>गहाण</th>
-<th>क्षेत्र हेक्टरमध्ये</th>
-<th>ओलीत क्षेत्र</th>
-<th>पाणी पुरवठ्याचा स्रोत</th>
-<th>गहाण असल्याास</th>
+
+<th>सर्व्हे नं. /<br>गट नं.</th>
+
+<th colspan="3">
+हक्कासंबंधी माहिती<br>
+स्वतःची &nbsp; पूर्वाधी &nbsp; गहाण
+</th>
+
+<th>
+क्षेत्र हेक्टर<br>मध्ये
+</th>
+
+<th>
+ओलीतली<br>जमीन
+</th>
+
+<th>
+पाणी पुरवठ्याचा<br>स्रोत
+</th>
+
+<th>
+गहाण<br>असल्यास
+</th>
+
 </tr>
 
+
 <tr>
-<td><b>ADGAON</b></td>
-<td><input id="survey0"></td>
+
+<td>ADGAON</td>
+
+<td><input id="survey"></td>
+
 <td>√</td>
+
 <td>-</td>
+
 <td>-</td>
-<td><input id="landArea"></td>
-<td>Yes</td>
-<td><input id="waterSource"></td>
+
+<td><input id="area"></td>
+
+<td><b>Yes</b></td>
+
+<td><input id="water"></td>
+
 <td>लागू नाही</td>
+
 </tr>
 
-</table>
-
-
-<table>
 
 <tr>
-<th>PROPOSED<br>CROPS</th>
-<th>CROP<br>NAME</th>
+
+<th>
+PROPOSED<br>CROPS
+</th>
+
+<th>
+CROP<br>NAME
+</th>
+
 <th>AREA</th>
+
 <th>GAT NO</th>
+
 <th>-</th>
-<th>इतर</th>
+
+<th colspan="4"></th>
+
 </tr>
 
-<tr>
+
+<tr class="crop">
+
 <td>1</td>
+
 <td><input id="crop1"></td>
+
 <td><input id="cropArea1"></td>
-<td><input id="cropGat1"></td>
+
+<td><input id="gat1"></td>
+
 <td>-</td>
-<td><input id="cropOther1"></td>
+
+<td colspan="4"></td>
+
 </tr>
 
-<tr>
+
+<tr class="crop">
+
 <td>2</td>
+
 <td><input id="crop2"></td>
+
 <td><input id="cropArea2"></td>
-<td><input id="cropGat2"></td>
+
+<td><input id="gat2"></td>
+
 <td>-</td>
-<td><input id="cropOther2"></td>
+
+<td colspan="4"></td>
+
 </tr>
 
-<tr>
+
+<tr class="crop">
+
 <td>3</td>
+
 <td><input id="crop3"></td>
+
 <td><input id="cropArea3"></td>
-<td><input id="cropGat3"></td>
+
+<td><input id="gat3"></td>
+
 <td>-</td>
-<td><input id="cropOther3"></td>
+
+<td colspan="4"></td>
+
 </tr>
 
 </table>
 
 
 <div class="section">
-३ - सहायक वार्षिक उत्पन्न :-
+
+३ - सहाय्य वार्षिक उत्पन्न :-
+
 </div>
 
 
-<div class="row">
-<label>क) शेती पासून मिळणारे उत्पन्न :- रु.</label>
-<input id="farmIncome" class="w30">
+<div class="row text">
+
+क) शेती पासून मिळणारे उत्पन्न :- रु.
+
+<input id="farmIncome" class="w35">
+
 </div>
 
-<div class="row">
-<label>ख) अन्य मार्गाने मिळणारे उत्पन्न :- रु.</label>
-<input id="otherIncome" class="w30">
+
+<div class="row text">
+
+ख) अन्य मार्गाने मिळणारे उत्पन्न :- रु.
+
+<input id="otherIncome" class="w35">
+
 </div>
 
-<div class="row">
-<label>ग)</label>
-<input id="income3" class="w30">
+
+<div class="row text">
+
+ग)
+
+<input id="income3" class="w40">
+
 </div>
 
-<div class="row">
-<label>घ)</label>
-<input id="income4" class="w30">
+
+<div class="row text">
+
+घ)
+
+<input id="income4" class="w40">
+
 </div>
 
-<div class="center bold">
+
+<div class="center bold text">
+
 एकूण उत्पन्न :- रु.
-<input id="totalIncome" class="w25">
+
+<input id="totalIncome" class="w30">
+
 </div>
 
 
 <div class="section">
-4. इतर बँक किंवा कर्जपुरवठा करणाऱ्या संस्थांकडून कर्ज घेतले असल्यास त्यासंबंधी माहिती :-
+
+4 &nbsp; इतर बँक किंवा कर्जपुरवठा करणाऱ्या संस्थांकडून कर्ज घेतले असल्यास त्यासंबंधी माहिती :-
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>संस्थेचे नाव</th>
+
 <th>कर्जाचा उद्देश</th>
+
 <th>आजाचे एकूण देणे</th>
+
 <th>पीक धकबाकी रु.</th>
+
 <th>तारण</th>
+
 <th>या वर्षी परत करावी लागणारी</th>
+
 </tr>
 
 <tr>
-<td><input id="otherBank"></td>
-<td><input id="otherLoanPurpose"></td>
-<td><input id="otherDue"></td>
-<td><input id="cropDue"></td>
-<td><input id="security"></td>
-<td><input id="repayment"></td>
+
+<td><input id="other1"></td>
+
+<td><input id="other2"></td>
+
+<td><input id="other3"></td>
+
+<td><input id="other4"></td>
+
+<td><input id="other5"></td>
+
+<td><input id="other6"></td>
+
 </tr>
 
 </table>
 
 
 <div class="footer">
-सहारा ऑनलाइन मल्टी सर्व्हिसेस - बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
+सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
+बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">2</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 3
+PAGE 3
 ===================================================== -->
 
-<div class="form" id="page3">
+<div class="page">
 
-<div class="logo">
-बँक ऑफ महाराष्ट्र
+<div class="bank-logo">
+
+बँक ऑफ महाराष्ट्र<br>
+Bank of Maharashtra
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>आमची बँक</th>
+
 <th></th>
 <th></th>
 <th></th>
 <th></th>
+
 <th>रक्कम रु.</th>
+
 </tr>
 
+
 <tr>
-<td>इतर बँक (नावे लिहा)</td>
+
+<td>इतर बँक ( नावे लिहा )</td>
+
+<td><input id="bank1"></td>
 <td><input id="bank2"></td>
 <td><input id="bank3"></td>
 <td><input id="bank4"></td>
-<td><input id="bank5"></td>
+
 <td><input id="bankAmount"></td>
+
 </tr>
 
 </table>
 
 
 <div class="section">
+
 ५ - दुसऱ्याच्या कर्जास जामीनदार म्हणून असल्यास त्याची माहिती :-
+
 </div>
 
 
-<div class="row">
-<label>श्री / श्रीमती :-</label>
-<input id="guarantorName" class="w40">
+<div class="row text">
+
+श्री / श्रीमती :-
+
+<input id="guarantorName" class="w60">
+
 </div>
 
-<div class="row">
-<label>बँक / संस्थेचे नाव :-</label>
-<input id="guarantorBank" class="w40">
+
+<div class="row text">
+
+बँक / संस्थेचे नाव :-
+
+<input id="guarantorBank" class="w60">
+
 </div>
 
-<div class="row">
-<label>कर्ज रक्कम रु. :-</label>
-<input id="guarantorLoan" class="w30">
+
+<div class="row text">
+
+कर्ज रक्कम रु. :-
+
+<input id="guarantorLoan" class="w40">
+
 </div>
 
-<div class="row">
-<label>एकूण देणे रु. :-</label>
-<input id="guarantorDue" class="w30">
+
+<div class="row text">
+
+एकूण देणे रु. :-
+
+<input id="guarantorDue" class="w40">
+
 </div>
 
-<div class="row">
-<label>दि.</label>
-<input id="guarantorDate" type="date" class="w20">
 
-<label>या तारखेस खात्याची परिस्थिती :- नियमित / थकीत</label>
-<input id="guarantorStatus" class="w25">
+<div class="row text">
+
+दि.
+
+<input id="guarantorDate" class="w25">
+
+या तारखेस खात्याची परिस्थिती :- नियमित / थकीत
+
 </div>
 
 
 <div class="section">
+
 ६ - स्वतःच्या मालकीची असणारी जनावरे / शेतीचे अवजारे व इतर मालमत्ता :-
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>अ.क्र.</th>
+
 <th>चल</th>
+
 <th>संख्या</th>
-<th>सध्याची किंमत (₹)</th>
+
+<th>सध्याची किंमत ( ₹ )</th>
+
 </tr>
 
-<tr>
-<td>क)</td>
-<td>बैल</td>
-<td><input id="bulls"></td>
-<td><input id="bullValue"></td>
-</tr>
 
-<tr>
-<td>ख)</td>
-<td>दुभती जनावरे</td>
-<td><input id="cows"></td>
-<td><input id="cowValue"></td>
-</tr>
+<tr><td>क)</td><td>बैल</td><td><input id="bull"></td><td><input id="bullValue"></td></tr>
 
-<tr>
-<td>ग)</td>
-<td>कोंबडी पालन</td>
-<td><input id="chicken"></td>
-<td><input id="chickenValue"></td>
-</tr>
+<tr><td>ख)</td><td>दुभती जनावरे</td><td><input id="cow"></td><td><input id="cowValue"></td></tr>
 
-<tr>
-<td>घ)</td>
-<td>ऑईल इंजिन / इलेक्ट्रिकल मोटर / इलेक्ट्रिकल पंपसेट</td>
-<td><input id="motor"></td>
-<td><input id="motorValue"></td>
-</tr>
+<tr><td>ग)</td><td>कोंबडी पालन</td><td><input id="chicken"></td><td><input id="chickenValue"></td></tr>
 
-<tr>
-<td>ड)</td>
-<td>पॉवर टिलर</td>
-<td><input id="powerTiller"></td>
-<td><input id="powerValue"></td>
-</tr>
+<tr><td>घ)</td><td>ऑईल इंजिन / इलेक्ट्रिक मोटर / इलेक्ट्रिकल पंपसेट</td><td><input id="motor"></td><td><input id="motorValue"></td></tr>
 
-<tr>
-<td>च)</td>
-<td>ट्रॅक्टर</td>
-<td><input id="tractor"></td>
-<td><input id="tractorValue"></td>
-</tr>
+<tr><td>ड)</td><td>पॉवर टिलर</td><td><input id="tiller"></td><td><input id="tillerValue"></td></tr>
 
-<tr>
-<td>छ)</td>
-<td>वाहतूक साधने</td>
-<td><input id="transport"></td>
-<td><input id="transportValue"></td>
-</tr>
+<tr><td>च)</td><td>ट्रॅक्टर</td><td><input id="tractor"></td><td><input id="tractorValue"></td></tr>
 
-<tr>
-<td>ज)</td>
-<td>इतर अवजारे</td>
-<td><input id="otherTools"></td>
-<td><input id="toolsValue"></td>
-</tr>
+<tr><td>छ)</td><td>वाहतूक साधने</td><td><input id="transport"></td><td><input id="transportValue"></td></tr>
+
+<tr><td>ज)</td><td>इतर अवजारे</td><td><input id="tools"></td><td><input id="toolsValue"></td></tr>
 
 </table>
 
@@ -1021,433 +1440,608 @@ a. लहान शेतकरी / अति लहान शेतकरी /
 <table>
 
 <tr>
+
 <th>अ.क्र.</th>
+
 <th>अचल</th>
+
 <th>संख्या</th>
-<th>सध्याची किंमत (₹)</th>
+
+<th>सध्याची किंमत ( ₹ )</th>
+
 </tr>
 
+
 <tr>
+
 <td>क)</td>
-<td>मालमत्तेसंबंधी माहिती (स्वतःच्या मालकीची) गहाणखत / शेती इ.</td>
+
+<td>
+मालमत्तेसंबंधी माहिती
+( स्वतःच्या मालकीची )
+गहाणखत / शेती इ.
+</td>
+
 <td><input id="propertyNo"></td>
+
 <td><input id="propertyValue"></td>
+
 </tr>
 
 </table>
 
 
 <div class="section">
+
 ७ - दिले जाणारे तारण :
+
 </div>
 
-<div class="txt bold">
+
+<div class="text bold">
+
 1 - प्राथमिक
+
 </div>
 
-<div class="txt">
+
+<div class="text">
+
 क) उभ्या पिकाची / पिकाचे हक्काधीन.
+
 </div>
 
-<div class="row">
-<label>ख)</label>
-<input id="primarySecurity" class="w80">
+
+<div class="row text">
+
+ख)
+
+<input id="security" class="w80">
+
 </div>
 
 
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">3</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 4
+PAGE 4
 ===================================================== -->
 
-<div class="form" id="page4">
+<div class="page">
 
-<div class="logo">
-बँक ऑफ महाराष्ट्र
+<div class="bank-logo">
+
+बँक ऑफ महाराष्ट्र<br>
+Bank of Maharashtra
+
 </div>
 
 
-<div class="section">
+<div class="text bold">
+
 2 - दुय्यम तारण (लागू असल्यास)
+
 </div>
 
-<div class="txt">
-क) पाचव्या वर्षी कर्ज मर्यादा रक्कम रु.
-<input id="secondaryAmount" class="w20">
-लाखापेक्षा अधिक असल्यास शेत जमिनीवर भार.
+
+<div class="text">
+
+क) पाचव्या वर्षी कर्ज मर्यादा रक्कम रु. १.६० लाखापेक्षा अधिक असल्यास शेत जमिनीवर भार.
+
 </div>
+
 
 <div class="row">
-<label>ख)</label>
-<input id="secondaryDetails" class="w80">
+
+ख)
+
+<input id="secondary" class="w80">
+
 </div>
 
 
 <div class="section">
-८ - जामीनदाराविषयी माहिती :- (जामीनदाराचे नाव / पत्ता / पत रु.)
+
+८ - जामीनदाराविषयी माहिती :-
+(जामीनदाराचे नाव / पत्ता / पत रु.)
+
 </div>
 
 
 <div class="row">
-<label>1 - नाव :-</label>
-<input id="surety1" class="w30">
 
-<label>मो.नं :-</label>
-<input id="suretyMobile1" class="w20">
+1 - नाव :-
 
-<label>पत :- रु.</label>
-<input id="suretyLimit1" class="w15">
-<label>लाख</label>
+<input id="surety1" class="w50">
+
+मो.नं :-
+
+<input id="suretyMobile1" class="w25">
+
+पत :- रु.
+
+<input id="suretyLimit1" class="w20">
+
+लाख
+
 </div>
 
 
 <div class="row">
-<label>2 - नाव :-</label>
-<input id="surety2" class="w30">
 
-<label>मो.नं :-</label>
-<input id="suretyMobile2" class="w20">
+2 - नाव :-
 
-<label>पत :- रु.</label>
-<input id="suretyLimit2" class="w15">
-<label>लाख</label>
+<input id="surety2" class="w50">
+
+मो.नं :-
+
+<input id="suretyMobile2" class="w25">
+
+पत :- रु.
+
+<input id="suretyLimit2" class="w20">
+
+लाख
+
 </div>
 
 
-<div class="declaration">
+<div class="text bold"
+style="margin-top:10mm;line-height:2;text-align:justify">
 
-<p>
 मी/आम्ही असे जाहीर करतो की वर नमूद केलेली माहिती माझ्या समजुतीनुसार सत्य व खरी आहे.
-</p>
 
-<p>
-आम्ही याबाबत बँकेस असा अधिकार देतो की, आवश्यकता वाटल्यास बँक माझ्या / आमच्या कर्जखात्यासंबंधी काही किंवा सर्व माहिती बँकेस योग्य वाटल्यास इतर बँकेस वित्तीय संस्थांना देऊ शकते.
-</p>
+<br>
 
-<p>
+आम्ही याबाबत बँकेस असा अधिकार देतो की, आवश्यकता वाटल्यास बँक माझ्या /आमच्या कर्जखात्यासंबंधी काही किंवा सर्व माहिती बँकेस योग्य वाटल्यास इतर बँकेस वित्तीय संस्थांना (एजन्सी) देण्यासंबंधी विचार करू शकते किंवा देऊ शकते.
+
+<br>
+
 इतर संस्थांकडून कर्ज घेतल्यासंबंधी माहिती मी / आम्ही वर नमूद केलेली माहिती खरी नसल्याचे आढळून आल्यास बँक माझे कर्ज घेण्यास अपात्र ठरवू शकते.
-</p>
 
-<p>
+<br>
+
 मी / आम्ही असे जाहीर करतो की कर्ज मंजुरीच्या सर्व शर्ती मी पाळीन तसेच कर्जाच्या कालावधीत इतर मालमत्ता निर्माण झाल्यास बँकेस कळवीन.
-</p>
 
 </div>
 
 
-<div style="margin-top:35px">
-
-<div style="display:flex;justify-content:space-between">
+<div class="signatures">
 
 <div>
+
 अर्जदाराचे नाव
+
 <br><br>
 
-1) <input id="signName1" class="w50">
-<br><br>
+1) <span class="sign-line"></span>
 
-2) <input id="signName2" class="w50">
+<br>
+
+2) <span class="sign-line"></span>
+
 </div>
 
 
 <div>
+
 अर्जदाराची सही / अंगठा
+
 <br><br>
 
-1) <input id="signature1" class="w50">
-<br><br>
+1) <span class="sign-line"></span>
 
-2) <input id="signature2" class="w50">
-</div>
+<br>
 
-</div>
+2) <span class="sign-line"></span>
 
 </div>
 
+</div>
 
-<div class="row" style="margin-top:35px">
 
-<label>स्थळ :- ADGAON</label>
+<div class="row" style="margin-top:15mm">
 
-<label>दिनांक :-</label>
-<input id="date4" type="date" class="w20">
+स्थळ :- <b>ADGAON</b>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+दिनांक :-
+
+<input id="date4" type="date" class="w30">
 
 </div>
 
 
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">4</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 5
+PAGE 5
 ===================================================== -->
 
-<div class="form" id="page5">
+<div class="page">
 
-<div class="logo">
-बँक ऑफ महाराष्ट्र
+<div class="bank-logo">
+
+बँक ऑफ महाराष्ट्र<br>
+Bank of Maharashtra
+
 </div>
 
 
-<div class="txt">
+<div class="text">
+
 16) Suitability of soil for cultivation of crops as per proposed cropping pattern :- <b>Yes</b>
+
 </div>
 
-<div class="txt">
+<div class="text">
+
 17) Availability of inputs (seeds, fertilizer, insecticides, pesticides etc) :- <b>Yes</b>
+
 </div>
 
-<div class="txt">
+<div class="text">
+
 18) Availability of labour :- <b>Yes</b>
+
 </div>
 
-<div class="txt">
+<div class="text">
+
 19) Marketing Facility :- <b>Yes</b>
+
 </div>
 
-<div class="txt">
+<div class="text">
+
 20) Transportation Facility :- <b>Yes</b>
+
 </div>
 
-<div class="txt">
+<div class="text">
+
 21) Source of Other income and activity (if any) :- <b>NA</b>
+
 </div>
 
 
 <div class="section">
+
 22) Guarantors offered to proposed credit facility ( If Applicable )
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>Sr.<br>No</th>
+
 <th>Name of Guarantor</th>
+
 <th>Saving Account No.</th>
-<th>Credit Facility availed<br>if any (Loan ac No / Purpose)</th>
-<th>Remark Regarding overdue & other</th>
+
+<th>
+Credit Facility availed<br>
+if any ( Loan ac No / Purpose )
+</th>
+
+<th>
+Remark Regarding overdue & other ( if any )
+</th>
+
 </tr>
 
+
 <tr>
+
 <td>1</td>
-<td><input id="engGuarantor"></td>
-<td><input id="engSaving"></td>
-<td><input id="engCredit"></td>
-<td><input id="engRemark"></td>
+
+<td><input id="eng1"></td>
+
+<td><input id="eng2"></td>
+
+<td><input id="eng3"></td>
+
+<td><input id="eng4"></td>
+
 </tr>
 
 </table>
 
 
-<div class="txt">
+<div class="text">
+
 23) Comments on Land Mutation :- &nbsp; <b>Record Provided</b>
+
 </div>
 
-<div class="txt">
-1) Whether land is purchased or ancestral :- &nbsp;
-<input id="landType" class="w30">
+
+<div class="text">
+
+1) Whether land is purchased or ancestral :- &nbsp; <b>Details Provided</b>
+
 </div>
 
-<div class="txt">
+
+<div class="text">
+
 2) Any facility sanctioned to previous owner of the same land and their status :- <b>NA</b>
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>Sr.<br>No</th>
+
 <th>AC Number</th>
+
 <th>Purpose</th>
+
 <th>O / S</th>
-<th>If closed then by<br>Bank OTS / CSMMY /</th>
+
+<th>
+If closed then by<br>
+Bank OTS / CSMMY /
+</th>
+
 </tr>
 
+
 <tr>
+
 <td>1</td>
-<td><input id="acNumber"></td>
-<td><input id="acPurpose"></td>
-<td><input id="osAmount"></td>
-<td><input id="closedBy"></td>
+
+<td><input id="ac1"></td>
+
+<td><input id="ac2"></td>
+
+<td><input id="ac3"></td>
+
+<td><input id="ac4"></td>
+
 </tr>
 
 </table>
 
 
-<div class="txt">
+<div class="text">
+
 24) Application Liability as Guarantor and their status :- <b>NA</b>
+
 </div>
 
 
 <table>
 
 <tr>
+
 <th>Sr.<br>No</th>
+
 <th>Loan Account Number</th>
+
 <th>Sanction Amt ( In Lakh )</th>
+
 <th>Over in Lakh ( if Any )</th>
+
 </tr>
 
+
 <tr>
+
 <td>1</td>
-<td><input id="engLoanAccount"></td>
-<td><input id="sanctionAmount"></td>
-<td><input id="overAmount"></td>
+
+<td><input id="loanAcc"></td>
+
+<td><input id="sanction"></td>
+
+<td><input id="over"></td>
+
 </tr>
 
 </table>
 
 
-<div class="txt">
-24) Availability of MSEB Connection :- &nbsp; <b>Available</b>
+<div class="text">
+
+24) Availability of MSEB Connection :- <b>Available</b>
+
 </div>
 
 
-<div style="margin-top:55px;display:flex;justify-content:space-between">
+<div style="
+position:absolute;
+left:9mm;
+bottom:28mm;
+font-size:10px;
+">
 
-<div>
 Date :- <input id="date5" type="date">
+
 <br>
+
 Place :- <b>DHAWADA</b>
+
 </div>
 
-<div class="bold center">
+
+<div style="
+position:absolute;
+right:12mm;
+bottom:28mm;
+text-align:center;
+font-size:10px;
+font-weight:700;
+">
+
 Branch Manager/Visiting<br>
+
 Official Branch: Dhawda(208)
-</div>
 
 </div>
 
 
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">5</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 6 - स्वयंघोषणापत्र
+PAGE 6
 ===================================================== -->
 
-<div class="form">
+<div class="page">
 
-<div class="affidavit">
+<div class="double-border">
 
 <div class="aff-title">
+
 " स्वयंघोषणापत्र "
+
 </div>
 
 
 <div class="aff-text">
 
-<p>
 मी / आम्ही
-<input id="selfName" class="w30">
+
+<input id="selfName" class="w35">
+
 वय
-<input id="selfAge" class="w15">
+
+<input id="selfAge" class="w20">
+
 वर्ष
-धंदा
-<input id="selfBusiness" class="w15">
-शेती
-</p>
+
+धंदा <b>शेती</b>
+
+<br>
 
 
-<p>
-रा. <b>ADGAON</b>
+रा. &nbsp; ADGAON &nbsp;&nbsp;
+
 सत्य प्रतिज्ञेद्वारे निवेदन करतो की,
-माझे नावावर मौजे <b>ADGAON</b>
-येथे गट नं
-<input id="selfGat" class="w15">
+
+माझे नावावर मौजे &nbsp; ADGAON &nbsp; येथे गट नं
+
+<input id="selfGat" class="w25">
+
 येथे
-<input id="selfHectare" class="w15">
+
+<input id="selfArea" class="w20">
+
 हेक्टर क्षेत्र आहे.
-</p>
+
+<br>
 
 
-<p>
 मी आपल्या बँक ऑफ महाराष्ट्र शाखा,
+
 <b>DHAWDA</b>
+
 येथून पीक कर्जाचा लाभ घेतला आहे.
-</p>
+
+<br>
 
 
-<p>
 तरी मी स्वतःचे खर्चाने माझ्या क्षेत्राचा पीक विमा काढणार आहे.
+
 तरी माझा पीक विमा शाखेने काढू नये ही नम्र विनंती.
-</p>
+
+<br><br>
 
 
-<p>
-करीता हे शपथपत्र मी माझे राजी खुशीने स्वहस्ते लिहून दिले आहे,
+करीता हे शपथपत्र मी माझे राजी खुशीने स्वहस्ते लिहून दिले,
+
 जे खरे व बरोबर आहे यात काही गैर नाही.
-</p>
 
 </div>
 
 
-<div style="margin-top:40px">
+<div class="aff-details">
 
-<div class="row">
-<label>दिनांक :-</label>
-<input id="selfDate" type="date" class="w30">
+दिनांक :-
+
+<input id="selfDate" type="date" class="w35">
+
+<br>
+
+स्थळ :- <b>ADGAON</b>
+
+<br>
+
+नाव :-
+
+<input id="selfName2" class="w50">
+
+<br>
+
+बचत खाते क्र. :-
+
+<input id="selfSaving" class="w50">
+
+<br>
+
+कर्ज खाते क्र. :-
+
+<input id="selfLoan" class="w50">
+
+<br>
+
+आधार क्र. :-
+
+<input id="aadhaar" class="w50">
+
+<br>
+
+मोबाईल क्र. :-
+
+<input id="selfMobile" class="w50">
+
 </div>
 
-<div class="row">
-<label>स्थळ :-</label>
-<input value="ADGAON" class="w30">
-</div>
 
-<div class="row">
-<label>नाव :-</label>
-<input id="selfName2" class="w30">
-</div>
+<div class="aff-sign">
 
-<div class="row">
-<label>बचत खाते क्र. :-</label>
-<input id="selfSaving" class="w30">
-</div>
-
-<div class="row">
-<label>कर्ज खाते क्र. :-</label>
-<input id="selfLoan" class="w30">
-</div>
-
-<div class="row">
-<label>आधार क्र. :-</label>
-<input id="aadhaar" class="w30">
-</div>
-
-<div class="row">
-<label>मोबाईल क्र. :-</label>
-<input id="selfMobile" class="w30">
-</div>
-
-</div>
-
-
-<div style="text-align:right;margin-top:-100px">
-
-<div class="bold">
 प्रतिज्ञक
-</div>
 
 <br><br><br>
 
@@ -1457,112 +2051,149 @@ Official Branch: Dhawda(208)
 
 </div>
 
+
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">6</div>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE 7 - शपथपत्र
+PAGE 7
 ===================================================== -->
 
-<div class="form">
+<div class="page">
 
-<div class="affidavit">
+<div class="double-border">
 
 <div class="aff-title">
+
 " शपथपत्र "
+
 </div>
 
 
 <div class="aff-text">
 
-<p>
 मी / आम्ही
-<input id="affName" class="w30">
+
+<input id="affName" class="w35">
+
 वय
-<input id="affAge" class="w15">
+
+<input id="affAge" class="w20">
+
 वर्ष
-धंदा
-<input id="affBusiness" class="w15">
-शेती
-</p>
+
+धंदा <b>शेती</b>
+
+<br>
 
 
-<p>
-रा. <b>ADGAON</b>
+रा. &nbsp; ADGAON &nbsp;&nbsp;
+
 सत्य प्रतिज्ञेद्वारे निवेदन करतो की,
-माझे / आमचे नावावर मौजे
-<b>ADGAON</b>
+
+माझे / आमचे नावावर मौजे &nbsp; ADGAON &nbsp;
+
 येथे गट नं
-<input id="affGat" class="w15">
+
+<input id="affGat" class="w25">
+
 येथे
-<input id="affHectare" class="w15">
-हेक्टर क्षेत्र असून, मी / आम्ही आपल्या बँक ऑफ महाराष्ट्र शाखा,
+
+<input id="affArea" class="w20">
+
+हेक्टर क्षेत्र असून,
+
+मी / आम्ही आपल्या बँक ऑफ महाराष्ट्र शाखा,
+
 <b>DHAWDA</b>
+
 येथे कर्ज प्रकरण दाखल केलेले आहे.
-</p>
+
+<br>
 
 
-<p>
 मी / आम्ही सदरच्या क्षेत्रावर यापूर्वी कोणत्याही बँक,
+
 वित्तीय संस्था, पतसंस्था व इतर कोणत्याही प्रकारचे कर्ज घेतलेले नाही.
+
 सदर मिळकत ही निर्विवाद आहे.
-</p>
+
+सदरमिळकतीत इतर कोणाचाही काही हक्क संबंध नाही.
+
+<br>
 
 
-<p>
-सदर मिळकतीबाबत कोणत्याही न्यायालयात वाद प्रलंबित नाही.
-</p>
+सदरमिळकती बाबत कोणत्याही न्यायालयात वाद प्रलंबित नाही.
+
+<br>
 
 
-<p>
-करीता हे शपथपत्र मी / आम्ही माझे राजी खुशीने स्वहस्ते लिहून दिलेले आहे.
-आहेत, जे खरे व बरोबर आहे यात काही गैर नाही.
-</p>
+करीता हे शपथपत्र मी / आम्ही माझे / आमच्या राजी खुशीने
 
+स्वहस्ते लिहून दिलेले आहे.
 
-<p>
-आवश्यकतेनुसार मी / आम्ही मा. द.सा. कलम
+आहे, जे खरे व बरोबर आहे यात काही गैर नाही,
+
+आढळल्यास मी / आम्ही मा.द.सा.कलम
+
 १९९,२००,२३३(२)
+
 नुसार शिक्षेस पात्र राहू.
-</p>
+
+<br><br>
 
 
-<p>
 करीता हे शपथपत्र.
-</p>
 
 </div>
 
 
-<div style="margin-top:55px">
+<div style="
+margin-top:25mm;
+font-size:11px;
+line-height:2;
+">
 
-<div class="row">
-<label>दिनांक :-</label>
-<input id="affDate" type="date" class="w25">
+दिनांक :-
+
+<input id="affDate" type="date" class="w35">
+
+<br>
+
+स्थळ :- <b>ADGAON</b>
+
 </div>
 
-<div class="row">
-<label>स्थळ :-</label>
-<input value="ADGAON" class="w25">
-</div>
 
-</div>
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+margin-top:15mm;
+font-size:11px;
+text-align:center;
+">
 
+<div>
 
-<div style="display:flex;justify-content:space-around;margin-top:40px">
-
-<div class="center bold">
 प्रतिज्ञक
+
 </div>
 
-<div class="center bold">
+<div>
+
 स्वाक्षरी / अंगठा
+
 </div>
 
 </div>
@@ -1571,9 +2202,14 @@ Official Branch: Dhawda(208)
 
 
 <div class="footer">
+
 सहारा ऑनलाइन मल्टी सर्व्हिसेस<br>
+
 बालाजी मार्केट धावडा ता भोकरदन जि जालना
+
 </div>
+
+<div class="page-number">7</div>
 
 </div>
 
@@ -1581,61 +2217,15 @@ Official Branch: Dhawda(208)
 
 <script>
 
-/* =====================================================
-   AUTOMATIC DATA
-===================================================== */
+/* =========================
+   SAVE
+========================= */
 
 const fields =
-document.querySelectorAll("input,textarea,select");
+document.querySelectorAll("input");
 
 
-/* अर्जदाराचे नाव सर्व ठिकाणी */
-
-document.getElementById("applicant1")
-.addEventListener("input",function(){
-
-    const value=this.value;
-
-    document.getElementById("mainName1").value=value;
-    document.getElementById("selfName").value=value;
-    document.getElementById("selfName2").value=value;
-    document.getElementById("affName").value=value;
-
-    document.getElementById("signName1").value=value;
-
-});
-
-
-/* वय */
-
-document.getElementById("age1")
-.addEventListener("input",function(){
-
-    const value=this.value;
-
-    document.getElementById("mainAge1").value=value;
-    document.getElementById("selfAge").value=value;
-    document.getElementById("affAge").value=value;
-
-});
-
-
-/* मोबाईल */
-
-document.getElementById("mobile")
-.addEventListener("input",function(){
-
-    document.getElementById("selfMobile").value=
-    this.value;
-
-});
-
-
-/* =====================================================
-   SAVE
-===================================================== */
-
-function saveForm(){
+function saveData(){
 
     const data={};
 
@@ -1649,38 +2239,42 @@ function saveForm(){
 
     });
 
+
     localStorage.setItem(
-        "PEEK_KARJ_FORM",
+        "peekKarjData",
         JSON.stringify(data)
     );
 
-    alert("✅ माहिती सेव्ह झाली.");
+
+    alert("माहिती सेव्ह झाली.");
 
 }
 
 
-/* =====================================================
+/* =========================
    LOAD
-===================================================== */
+========================= */
 
-function loadForm(){
+function loadData(){
 
-    const saved=
-    localStorage.getItem("PEEK_KARJ_FORM");
+    const saved =
+    localStorage.getItem(
+        "peekKarjData"
+    );
 
-    if(!saved) return;
+    if(!saved)return;
 
-    const data=
+    const data =
     JSON.parse(saved);
 
     Object.keys(data).forEach(id=>{
 
-        const field=
+        const field =
         document.getElementById(id);
 
         if(field){
 
-            field.value=
+            field.value =
             data[id];
 
         }
@@ -1690,15 +2284,82 @@ function loadForm(){
 }
 
 
-/* =====================================================
-   CLEAR
-===================================================== */
+/* =========================
+   AUTO NAME
+========================= */
 
-function clearForm(){
+function syncName(){
+
+    const name =
+    document.getElementById("name1").value;
+
+    const age =
+    document.getElementById("age1").value;
+
+    const mobile =
+    document.getElementById("mobile").value;
+
+
+    [
+        "mainName1",
+        "selfName",
+        "selfName2",
+        "affName"
+    ].forEach(id=>{
+
+        const e =
+        document.getElementById(id);
+
+        if(e)e.value=name;
+
+    });
+
+
+    [
+        "mainAge1",
+        "selfAge",
+        "affAge"
+    ].forEach(id=>{
+
+        const e =
+        document.getElementById(id);
+
+        if(e)e.value=age;
+
+    });
+
+
+    document.getElementById(
+        "selfMobile"
+    ).value=mobile;
+
+}
+
+
+document
+.getElementById("name1")
+.addEventListener("input",syncName);
+
+
+document
+.getElementById("age1")
+.addEventListener("input",syncName);
+
+
+document
+.getElementById("mobile")
+.addEventListener("input",syncName);
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearData(){
 
     if(
         !confirm(
-            "सर्व भरलेली माहिती काढून टाकायची आहे?"
+            "सर्व भरलेली माहिती काढायची आहे?"
         )
     ){
 
@@ -1706,31 +2367,24 @@ function clearForm(){
 
     }
 
+
     localStorage.removeItem(
-        "PEEK_KARJ_FORM"
+        "peekKarjData"
     );
+
 
     fields.forEach(field=>{
 
-        if(
-            field.type!=="button" &&
-            !field.hasAttribute("value")
-        ){
-
-            field.value="";
-
-        }
+        field.value="";
 
     });
 
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+loadData();
 
-loadForm();
+syncName();
 
 </script>
 
