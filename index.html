@@ -3,267 +3,485 @@
 <html lang="mr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>श्री मल्टी सर्व्हिसेस - Farmer Card Maker</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>लाभार्थी माहिती फॉर्म</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;padding:18px;background:#eaf0f5;font-family:Arial,sans-serif;color:#172033}
-.container{max-width:1100px;margin:auto}
-h2{text-align:center;color:#14783d}
-.form{background:white;padding:18px;border-radius:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:20px}
-label{font-size:14px;font-weight:bold}
-input,select{width:100%;padding:10px;margin-top:5px;border:1px solid #bbb;border-radius:6px;font-size:15px}
-button{padding:12px 16px;border:0;border-radius:7px;background:#168044;color:white;font-size:15px;font-weight:bold;cursor:pointer}
-.blue{background:#2459a9}.dark{background:#354052}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.card{width:100%;aspect-ratio:1.61;background:#fff;border:1.5px solid #222;border-radius:13px;overflow:hidden;display:flex;flex-direction:column;margin:20px auto}
-.header{min-height:21%;display:grid;grid-template-columns:1fr 2fr .55fr;align-items:center;text-align:center;padding:9px;gap:7px;border-bottom:4px solid #c7a438}
-.brand{font-size:clamp(12px,2.5vw,27px);font-weight:bold;color:#075b35}
-.gov{font-size:clamp(9px,1.7vw,18px);font-weight:bold;color:#168044}
-.gov span{display:block;color:#e87519;margin-bottom:3px}
-.sample{background:#a32929;color:white;font-weight:bold;font-size:clamp(8px,1.1vw,12px);padding:5px 2px}
-.details{flex:1;min-height:0;display:grid;grid-template-columns:20% 1fr 17%;align-items:center;gap:2%;padding:2.5%}
-.photo{width:100%;aspect-ratio:.72;object-fit:cover;border:2px solid #9ba1a9;border-radius:5px;background:#eee}
-.fields{font-size:clamp(8px,1.4vw,16px);line-height:1.85;min-width:0}
-.fields div{display:grid;grid-template-columns:40% 60%;gap:3px}
-.fields strong{color:#465464}
-.fields span{font-weight:bold;overflow-wrap:anywhere}
-.qrbox{width:100%;text-align:center;min-width:0}
-#qrcode{width:100%;max-width:130px;margin:auto;padding:4px;background:white;border:1px solid #263344}
-#qrcode img,#qrcode canvas{display:block;width:100%!important;height:auto!important}
-.qrlabel{font-size:clamp(7px,.9vw,10px);margin-top:4px}
-.farmer{background:#edf7ef;text-align:center;padding:7px 4px;border-top:4px solid #c7a438;color:#168044;font-size:clamp(11px,2.2vw,24px);font-weight:bold;overflow-wrap:anywhere}
-.footer{text-align:center;padding:5px 3px;font-size:clamp(8px,1.1vw,12px);font-weight:bold}
-.back-details{display:block;position:relative;padding:7% 4% 3% 6%}
-.back-content{margin-left:2%;padding-top:2%}
-.address{font-size:clamp(7px,.95vw,11px);font-weight:bold;text-transform:uppercase;margin-bottom:12px;overflow-wrap:anywhere}
-.land-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:clamp(8px,1vw,12px);color:#111}
-.land-table th,.land-table td{border:1px solid #111;padding:6px 3px;text-align:center}
-.land-table th{background:#fff}
-.download-date{position:absolute;left:0;top:0;bottom:0;width:5%;border-right:1px solid #9ca3af;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:clamp(7px,.8vw,10px);font-weight:bold;padding:5px 0}
-.back-footer{display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap;padding:7px;border-top:4px solid #c7a438;color:#12396f;font-size:clamp(8px,1vw,12px);font-weight:bold}
-.disclaimer{text-align:center;background:#fff6e8;color:#8b2525;padding:4px;font-size:9px;font-weight:bold}
-.note{font-size:13px;line-height:1.6;color:#555}
-@media(max-width:600px){body{padding:7px}.form{padding:11px;gap:8px}.details{grid-template-columns:21% 1fr 17%;gap:2%;padding:2%}.fields{line-height:1.65}.header{padding:5px;gap:3px}.back-footer{gap:8px}}
-@media print{
- body{padding:0;background:white}
- h2,.form,.actions,.note{display:none!important}
- .container{max-width:none;width:100%}
- .card{width:100%;margin:0;border-radius:0;break-inside:avoid;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
- #cardBack{break-before:page;page-break-before:always}
- @page{size:landscape;margin:5mm}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, "Noto Sans Devanagari", sans-serif;
+  background: #eef2f7;
+  color: #111;
+}
+
+.toolbar {
+  max-width: 950px;
+  margin: 0 auto 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 6px;
+  background: #155eef;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button.secondary { background: #475467; }
+button.green { background: #16803c; }
+
+.sheet {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+  background: white;
+  border: 1px solid #bbb;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 22px;
+  font-size: 23px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  font: inherit;
+  background: #fff;
+  color: #111;
+}
+
+.members {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 15px 0 22px;
+}
+
+.member {
+  min-width: 0;
+  text-align: center;
+}
+
+.photo-box {
+  height: 125px;
+  border: 1.5px solid #333;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #fff;
+}
+
+.photo-box img,
+.group-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.placeholder {
+  padding: 5px;
+  color: #777;
+  font-size: 13px;
+}
+
+.member input[type="file"],
+.group-photo input[type="file"] {
+  width: 100%;
+  font-size: 11px;
+  margin: 5px 0;
+}
+
+.member .name {
+  text-align: center;
+  font-size: 13px;
+  padding: 7px 3px;
+}
+
+.section-title {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  font-size: 17px;
+}
+
+.group-photo {
+  width: 100%;
+  height: 250px;
+  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: white;
+}
+
+.notes {
+  margin-top: 20px;
+}
+
+.notes textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
+.signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.signature {
+  border-top: 1px solid #555;
+  text-align: center;
+  padding-top: 8px;
+  min-height: 40px;
+}
+
+.footer {
+  text-align: center;
+  color: #555;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+@media(max-width:600px) {
+  body { padding: 6px; }
+  .sheet { padding: 10px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .photo-box { height: 145px; }
+  .group-photo { height: 200px; }
+}
+
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+@media print {
+  body { padding: 0; background: white; }
+  .toolbar, .upload-control, .footer { display: none !important; }
+  .sheet {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    border: none;
+  }
+  input[type="text"], textarea {
+    border: none;
+    border-bottom: 1px solid #aaa;
+    border-radius: 0;
+    padding: 4px 2px;
+    background: transparent;
+    color: black;
+    print-color-adjust: exact;
+  }
+  .members { gap: 6px; }
+  .photo-box { height: 100px; }
+  .member .name { border: 1px solid #aaa; }
+  .group-photo { height: 210px; }
+  .notes textarea { min-height: 55px; }
+  .section-title { margin-top: 12px; }
+  .signatures { margin-top: 24px; }
+  .member, .group-photo, .info-grid, .signatures {
+    break-inside: avoid;
+  }
 }
 </style>
 </head>
+
 <body>
-<div class="container">
-<h2>श्री मल्टी सर्व्हिसेस – Farmer Card Maker</h2>
 
-<div class="form">
-<label>शेतकऱ्याचे नाव (मराठी)<input id="mrName" placeholder="पूर्ण नाव"></label>
-<label>Name (English)<input id="enName" placeholder="Full name"></label>
-<label>Gender<select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></label>
-<label>Date of Birth<input id="dob" type="date"></label>
-<label>Category<input id="caste" placeholder="उदा. OBC"></label>
-<label>Total Area (Ha)<input id="area" placeholder="उदा. 0.013"></label>
-<label>Farmer ID<input id="farmerId" placeholder="ID असल्यास भरा"></label>
-<label>आधारचे शेवटचे 4 अंक<input id="aadhaar" type="password" maxlength="4" inputmode="numeric" placeholder="पर्यायी"></label>
-<label>फोटो निवडा<input id="photoInput" type="file" accept="image/*"></label>
-<label>पत्ता<input id="address" value="ADGAON, BHOKARDAN, JALNA, MAHARASHTRA"></label>
-<label>Khata<input id="khata" placeholder="Khata क्रमांक"></label>
-<label>Khasra / Gat No.<input id="khasra" placeholder="Gat क्रमांक"></label>
-<label>क्षेत्रफळ (Ha)<input id="landArea" placeholder="0.013"></label>
-<label>अतिरिक्त QR माहिती<input id="extra" placeholder="पर्यायी"></label>
-<button type="button" onclick="generateCard()">कार्ड तयार करा</button>
-<button type="button" class="dark" onclick="clearForm()">फॉर्म रिकामा करा</button>
+<div class="toolbar">
+  <button onclick="window.print()">🖨️ प्रिंट / PDF डाउनलोड</button>
+  <button class="green" onclick="addMember()">+ फोटो बॉक्स वाढवा</button>
+  <button class="secondary" onclick="resetForm()">फॉर्म रिकामा करा</button>
 </div>
 
-<!-- FRONT SIDE -->
-<div class="card" id="card">
-<div class="header">
-<div class="brand">Agri🌱Stack</div>
-<div class="gov"><span>शेतकरी माहिती कार्ड</span>FARMER INFORMATION CARD</div>
-<div class="sample">SAMPLE</div>
-</div>
+<main class="sheet" id="formSheet">
 
-<div class="details">
-<img id="photo" class="photo" src="https://placehold.co/240x320/e5e7eb/555?text=PHOTO" alt="Farmer photo">
-<div class="fields">
-<div><strong>नाव</strong><span id="outMr">--</span></div>
-<div><strong>Name</strong><span id="outEn">--</span></div>
-<div><strong>Gender</strong><span id="outGender">Male</span></div>
-<div><strong>DOB</strong><span id="outDob">--</span></div>
-<div><strong>Category</strong><span id="outCaste">--</span></div>
-<div><strong>Total Area</strong><span id="outArea">--</span></div>
-<div><strong>Aadhaar</strong><span id="outAadhaar">XXXX XXXX</span></div>
-</div>
-<div class="qrbox"><div id="qrcode"></div><div class="qrlabel">DEMO QR — NOT OFFICIAL</div></div>
-</div>
-<div class="farmer" id="outId">SAMPLE FARMER ID: NOT ENTERED</div>
-<div class="footer">SAMPLE • NOT AN OFFICIAL GOVERNMENT ID</div>
-</div>
+  <h2>लाभार्थी माहिती फॉर्म</h2>
 
-<!-- BACK SIDE -->
-<div class="card" id="cardBack">
-<div class="header">
-<div class="brand">Agri🌱Stack</div>
-<div class="gov"><span>शेतकरी माहिती</span>FARMER INFORMATION</div>
-<div class="sample">SAMPLE</div>
-</div>
-<div class="details back-details">
-<div class="download-date">Download Date: <span id="backDate"></span></div>
-<div class="back-content">
-<div class="address"><b>ADDRESS:</b> <span id="backAddress">ADGAON, BHOKARDAN, JALNA, MAHARASHTRA</span></div>
-<table class="land-table">
-<thead><tr><th>#</th><th>Khata</th><th>Khasra</th><th>Area (Ha)</th></tr></thead>
-<tbody><tr><td>1</td><td id="backKhata">--</td><td id="backKhasra">--</td><td id="backLandArea">--</td></tr></tbody>
-</table>
-</div>
-</div>
-<div class="back-footer"><span>☎ हेल्पलाइन: अधिकृत पोर्टल तपासा</span><span>श्री मल्टी सर्व्हिसेस</span></div>
-<div class="disclaimer">SAMPLE • NOT AN OFFICIAL GOVERNMENT CARD</div>
-</div>
+  <div class="info-grid">
+    <div class="field">
+      <label>गावाचे नाव</label>
+      <input type="text" placeholder="गाव, तालुका, जिल्हा">
+    </div>
 
-<div class="actions">
-<button onclick="window.print()">कार्ड प्रिंट करा</button>
-<button class="blue" onclick="downloadPDF()">दोन्ही बाजू PDF डाउनलोड</button>
-<button class="dark" onclick="downloadPNG('card')">पुढील बाजू PNG</button>
-<button class="dark" onclick="downloadPNG('cardBack')">मागील बाजू PNG</button>
-</div>
-<p class="note">हा डेमो कार्ड जनरेटर आहे. QR कोडमध्ये भरलेली डेमो माहिती असते; तो अधिकृत सरकारी पडताळणी QR नाही. कार्डवर खरी सरकारी अधिकृतता असल्याचा दावा करू नका.</p>
-</div>
+    <div class="field">
+      <label>लाभार्थ्याचे नाव</label>
+      <input type="text" placeholder="पूर्ण नाव">
+    </div>
+
+    <div class="field">
+      <label>Work Code</label>
+      <input type="text" placeholder="Work Code">
+    </div>
+
+    <div class="field">
+      <label>रोजगार सेवक / Attendance Taker</label>
+      <input type="text" placeholder="नाव">
+    </div>
+
+    <div class="field">
+      <label>User ID</label>
+      <input type="text" placeholder="User ID">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="text" placeholder="Password">
+    </div>
+
+    <div class="field">
+      <label>Latitude</label>
+      <input type="text" placeholder="Latitude">
+    </div>
+
+    <div class="field">
+      <label>Longitude</label>
+      <input type="text" placeholder="Longitude">
+    </div>
+  </div>
+
+  <div class="section-title">लाभार्थी / कुटुंब सदस्यांचे फोटो व नावे</div>
+
+  <div class="members" id="members">
+
+    <!-- प्रत्येक सदस्याचा फोटो व नावाचा बॉक्स -->
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+    <div class="member">
+      <div class="photo-box">
+        <span class="placeholder">फोटो अपलोड करा</span>
+      </div>
+      <input class="upload-control" type="file" accept="image/*"
+             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
+      <input class="name" type="text" placeholder="येथे नाव लिहा">
+    </div>
+
+  </div>
+
+  <div class="section-title">ग्रुप फोटो</div>
+
+  <div class="group-photo" id="groupPhoto">
+    <span class="placeholder">येथे ग्रुप फोटो अपलोड करा</span>
+  </div>
+
+  <input class="upload-control" type="file" accept="image/*"
+         onchange="loadPhoto(this, document.getElementById('groupPhoto'))">
+
+  <div class="notes">
+    <div class="section-title">अतिरिक्त माहिती / टिपण</div>
+    <textarea placeholder="येथे आवश्यक माहिती टाइप करा..."></textarea>
+  </div>
+
+  <div class="signatures">
+    <div class="signature">लाभार्थ्याची सही</div>
+    <div class="signature">रोजगार सेवक / Attendance Taker</div>
+  </div>
+
+  <div class="footer">लाभार्थी माहिती फॉर्म</div>
+
+</main>
 
 <script>
-const $ = id => document.getElementById(id);
+function loadPhoto(input, box) {
+  const file = input.files && input.files[0];
+  if (!file) return;
 
-function generateCard(){
-  const mr=$('mrName').value.trim();
-  const en=$('enName').value.trim();
-  const dob=$('dob').value;
-  const caste=$('caste').value.trim();
-  const area=$('area').value.trim();
-  const id=$('farmerId').value.trim();
-  const aadhaar=$('aadhaar').value.trim();
-  const gender=$('gender').value;
-
-  if(aadhaar && !/^\d{4}$/.test(aadhaar)){
-    alert('आधारचे फक्त शेवटचे 4 अंक भरा.');
+  if (!file.type.startsWith("image/")) {
+    alert("कृपया फोटो फाइल निवडा.");
+    input.value = "";
     return;
   }
 
-  $('outMr').textContent=mr||'--';
-  $('outEn').textContent=en||'--';
-  $('outGender').textContent=gender;
-  $('outDob').textContent=dob?dob.split('-').reverse().join('/'):'--';
-  $('outCaste').textContent=caste||'--';
-  $('outArea').textContent=area||'--';
-  $('outAadhaar').textContent=aadhaar?'XXXX XXXX '+aadhaar:'XXXX XXXX';
-  $('outId').textContent='SAMPLE FARMER ID: '+(id||'NOT ENTERED');
+  const reader = new FileReader();
 
-  $('backDate').textContent=new Date().toLocaleDateString('en-GB');
-  $('backAddress').textContent=$('address').value.trim()||'--';
-  $('backKhata').textContent=$('khata').value.trim()||'--';
-  $('backKhasra').textContent=$('khasra').value.trim()||'--';
-  $('backLandArea').textContent=$('landArea').value.trim()||area||'--';
+  reader.onload = function(event) {
+    box.replaceChildren();
 
-  $('qrcode').innerHTML='';
-  if(typeof QRCode==='undefined'){
-    alert('QR लायब्ररी लोड झाली नाही. इंटरनेट तपासा.');
-    return;
-  }
+    const img = document.createElement("img");
+    img.src = event.target.result;
+    img.alt = "अपलोड केलेला फोटो";
 
-  const data={
-    type:'DEMO ONLY - NOT OFFICIAL',
-    name:en||mr||'',
-    gender,dob,category:caste,area,
-    farmerId:id,
-    extra:$('extra').value.trim()
+    box.appendChild(img);
   };
 
-  new QRCode($('qrcode'),{
-    text:JSON.stringify(data),
-    width:300,height:300,
-    correctLevel:QRCode.CorrectLevel.M
+  reader.readAsDataURL(file);
+}
+
+function addMember() {
+  const member = document.createElement("div");
+  member.className = "member";
+
+  const box = document.createElement("div");
+  box.className = "photo-box";
+
+  const placeholder = document.createElement("span");
+  placeholder.className = "placeholder";
+  placeholder.textContent = "फोटो अपलोड करा";
+  box.appendChild(placeholder);
+
+  const upload = document.createElement("input");
+  upload.type = "file";
+  upload.accept = "image/*";
+  upload.className = "upload-control";
+  upload.addEventListener("change", function() {
+    loadPhoto(upload, box);
+  });
+
+  const name = document.createElement("input");
+  name.type = "text";
+  name.className = "name";
+  name.placeholder = "येथे नाव लिहा";
+
+  member.append(box, upload, name);
+  document.getElementById("members").appendChild(member);
+}
+
+function resetForm() {
+  if (!confirm("सर्व माहिती आणि फोटो काढून टाकायचे आहेत का?")) return;
+
+  document.querySelectorAll(
+    '#formSheet input[type="text"], #formSheet textarea'
+  ).forEach(input => input.value = "");
+
+  document.querySelectorAll(
+    '#formSheet input[type="file"]'
+  ).forEach(input => input.value = "");
+
+  document.querySelectorAll(
+    '#formSheet .photo-box, #formSheet .group-photo'
+  ).forEach(box => {
+    box.replaceChildren();
+
+    const placeholder = document.createElement("span");
+    placeholder.className = "placeholder";
+    placeholder.textContent = box.classList.contains("group-photo")
+      ? "येथे ग्रुप फोटो अपलोड करा"
+      : "फोटो अपलोड करा";
+
+    box.appendChild(placeholder);
+  });
+
+  document.querySelectorAll('#members .member').forEach((member, index) => {
+    if (index >= 10) member.remove();
   });
 }
-
-$('photoInput').addEventListener('change',function(){
-  const file=this.files[0];
-  if(!file)return;
-  if(!file.type.startsWith('image/')){
-    alert('कृपया फोटो फाइल निवडा.');
-    this.value='';
-    return;
-  }
-  const reader=new FileReader();
-  reader.onload=e=>$('photo').src=e.target.result;
-  reader.readAsDataURL(file);
-});
-
-function clearForm(){
-  if(!confirm('सर्व माहिती रिकामी करायची?'))return;
-  ['mrName','enName','dob','caste','area','farmerId','aadhaar','extra','khata','khasra','landArea'].forEach(id=>$(id).value='');
-  $('address').value='ADGAON, BHOKARDAN, JALNA, MAHARASHTRA';
-  $('gender').value='Male';
-  $('photoInput').value='';
-  $('photo').src='https://placehold.co/240x320/e5e7eb/555?text=PHOTO';
-  generateCard();
-}
-
-async function captureCard(id){
-  if(typeof html2canvas==='undefined')throw new Error('Image library unavailable');
-  const element=$(id);
-  await new Promise(resolve=>setTimeout(resolve,300));
-  return html2canvas(element,{scale:3,backgroundColor:'#ffffff',useCORS:true,logging:false});
-}
-
-async function downloadPNG(id){
-  try{
-    const canvas=await captureCard(id);
-    const link=document.createElement('a');
-    link.download=id==='card'?'Farmer-Card-Front.png':'Farmer-Card-Back.png';
-    link.href=canvas.toDataURL('image/png');
-    link.click();
-  }catch(e){
-    alert('PNG डाउनलोड झाले नाही. इंटरनेट तपासा.');
-  }
-}
-
-async function downloadPDF(){
-  if(!window.jspdf||typeof html2canvas==='undefined'){
-    alert('PDF लायब्ररी लोड झाली नाही. इंटरनेट तपासा.');
-    return;
-  }
-  try{
-    const front=await captureCard('card');
-    const back=await captureCard('cardBack');
-
-    const width=100;
-    const height=width*front.height/front.width;
-    const {jsPDF}=window.jspdf;
-
-    const pdf=new jsPDF({
-      orientation:'landscape',
-      unit:'mm',
-      format:[width,height],
-      compress:true
-    });
-
-    pdf.addImage(front.toDataURL('image/jpeg',.98),'JPEG',0,0,width,height);
-    pdf.addPage([width,height],'landscape');
-    pdf.addImage(back.toDataURL('image/jpeg',.98),'JPEG',0,0,width,height);
-    pdf.save('Farmer-Card-Front-Back.pdf');
-  }catch(e){
-    console.error(e);
-    alert('PDF तयार झाले नाही. पुन्हा प्रयत्न करा.');
-  }
-}
-generateCard();
 </script>
+
 </body>
 </html>
