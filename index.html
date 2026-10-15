@@ -3,485 +3,237 @@
 <html lang="mr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>लाभार्थी माहिती फॉर्म</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, "Noto Sans Devanagari", sans-serif;
-  background: #eef2f7;
-  color: #111;
+*{box-sizing:border-box}
+body{
+  margin:0;background:#eee;color:#111;
+  font-family:"Noto Sans Devanagari",Arial,sans-serif;
 }
-
-.toolbar {
-  max-width: 950px;
-  margin: 0 auto 15px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+.toolbar{
+  display:flex;justify-content:center;gap:10px;
+  padding:12px;flex-wrap:wrap;
 }
-
-button {
-  padding: 11px 18px;
-  border: 0;
-  border-radius: 6px;
-  background: #155eef;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
+button{
+  padding:10px 16px;border:0;border-radius:5px;
+  color:white;background:#1769d2;cursor:pointer;
 }
-
-button.secondary { background: #475467; }
-button.green { background: #16803c; }
-
-.sheet {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 25px;
-  background: white;
-  border: 1px solid #bbb;
+.sheet{
+  width:210mm;min-height:297mm;
+  margin:0 auto;background:white;
+  padding:9mm 10mm 12mm;
 }
-
-h2 {
-  text-align: center;
-  margin: 0 0 22px;
-  font-size: 23px;
+.info{width:100%;border-collapse:collapse;table-layout:fixed}
+.info td{
+  border:1px solid #555;height:7.2mm;
+  padding:1mm 2mm;font-size:12px;
 }
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+.info td:first-child{width:100%}
+.info input{
+  border:0;outline:0;width:100%;height:100%;
+  font:inherit;background:transparent;color:#111;
 }
-
-.field label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 14px;
+.info .line{
+  display:flex;align-items:center;gap:4px;
 }
-
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 9px;
-  border: 1px solid #777;
-  border-radius: 3px;
-  font: inherit;
-  background: #fff;
-  color: #111;
+.info .line span{white-space:nowrap}
+.photos{margin-top:0}
+.photo-row{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:1mm;margin:0 2mm;
 }
-
-.members {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
-  margin: 15px 0 22px;
+.person{min-width:0;text-align:center}
+.photo{
+  width:100%;height:34mm;border:1.4px solid #111;
+  position:relative;overflow:hidden;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:white;
 }
-
-.member {
-  min-width: 0;
-  text-align: center;
+.photo img{
+  width:100%;height:100%;object-fit:contain;
 }
-
-.photo-box {
-  height: 125px;
-  border: 1.5px solid #333;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #fff;
+.hint{font-size:10px;color:#888;padding:2px}
+.file{
+  position:absolute;width:1px;height:1px;opacity:0;
 }
-
-.photo-box img,
-.group-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.names{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  margin:2mm 0 5.5mm;min-height:6mm;
 }
-
-.placeholder {
-  padding: 5px;
-  color: #777;
-  font-size: 13px;
+.names input{
+  min-width:0;width:100%;height:6mm;
+  border:1px solid #888;border-right:0;
+  padding:1mm;font-size:10px;text-align:center;
 }
-
-.member input[type="file"],
-.group-photo input[type="file"] {
-  width: 100%;
-  font-size: 11px;
-  margin: 5px 0;
+.names input:last-child{border-right:1px solid #888}
+.group-title{font-size:12px;margin:12mm 0 1.5mm}
+.group{
+  width:60%;height:61mm;margin-left:5mm;
+  border:1.5px solid #111;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;cursor:pointer;
 }
-
-.member .name {
-  text-align: center;
-  font-size: 13px;
-  padding: 7px 3px;
+.group img{width:100%;height:100%;object-fit:contain}
+.group .hint{font-size:12px}
+.signatures{
+  display:flex;justify-content:space-between;
+  margin:8mm 5mm 0;font-size:11px;
 }
-
-.section-title {
-  text-align: center;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  font-size: 17px;
+.signatures div{width:45%;text-align:center}
+.signatures input{
+  width:100%;border:0;border-bottom:1px solid transparent;
+  outline:0;text-align:center;font:inherit;
 }
-
-.group-photo {
-  width: 100%;
-  height: 250px;
-  border: 2px solid #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: white;
-}
-
-.notes {
-  margin-top: 20px;
-}
-
-.notes textarea {
-  min-height: 75px;
-  resize: vertical;
-}
-
-.signatures {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 35px;
-}
-
-.signature {
-  border-top: 1px solid #555;
-  text-align: center;
-  padding-top: 8px;
-  min-height: 40px;
-}
-
-.footer {
-  text-align: center;
-  color: #555;
-  font-size: 12px;
-  margin-top: 15px;
-}
-
-@media(max-width:600px) {
-  body { padding: 6px; }
-  .sheet { padding: 10px; }
-  .info-grid { grid-template-columns: 1fr; }
-  .members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .photo-box { height: 145px; }
-  .group-photo { height: 200px; }
-}
-
-@page {
-  size: A4;
-  margin: 10mm;
-}
-
-@media print {
-  body { padding: 0; background: white; }
-  .toolbar, .upload-control, .footer { display: none !important; }
-  .sheet {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    border: none;
+@page{size:A4 portrait;margin:0}
+@media print{
+  body{background:white}
+  .toolbar,.screen-only{display:none!important}
+  .sheet{margin:0;width:210mm;height:297mm;min-height:0;padding:9mm 10mm 12mm}
+  input{color:#111!important}
+  .photo,.group{cursor:default}
+  .hint{display:none}
+  .info input,.names input,.signatures input{
+    print-color-adjust:exact;
   }
-  input[type="text"], textarea {
-    border: none;
-    border-bottom: 1px solid #aaa;
-    border-radius: 0;
-    padding: 4px 2px;
-    background: transparent;
-    color: black;
-    print-color-adjust: exact;
-  }
-  .members { gap: 6px; }
-  .photo-box { height: 100px; }
-  .member .name { border: 1px solid #aaa; }
-  .group-photo { height: 210px; }
-  .notes textarea { min-height: 55px; }
-  .section-title { margin-top: 12px; }
-  .signatures { margin-top: 24px; }
-  .member, .group-photo, .info-grid, .signatures {
-    break-inside: avoid;
-  }
+}
+@media screen and (max-width:700px){
+  .sheet{width:100%;min-height:0;padding:12px}
+  .photo{height:25vw;min-height:65px}
+  .names input{font-size:9px}
+  .group{height:180px;width:75%}
+  .info td{font-size:10px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="toolbar">
-  <button onclick="window.print()">🖨️ प्रिंट / PDF डाउनलोड</button>
-  <button class="green" onclick="addMember()">+ फोटो बॉक्स वाढवा</button>
-  <button class="secondary" onclick="resetForm()">फॉर्म रिकामा करा</button>
+  <button onclick="window.print()">प्रिंट / PDF डाउनलोड</button>
+  <button onclick="resetForm()">फॉर्म रिकामा करा</button>
 </div>
 
-<main class="sheet" id="formSheet">
+<main class="sheet">
 
-  <h2>लाभार्थी माहिती फॉर्म</h2>
+<table class="info">
+<tbody>
+<tr><td><div class="line"><span>गावाचे नाव:</span><input aria-label="गावाचे नाव" placeholder="मौजे, तालुका, जिल्हा"></div></td></tr>
+<tr><td><div class="line"><span>लाभार्थी नाव:</span><input aria-label="लाभार्थी नाव"></div></td></tr>
+<tr><td><div class="line"><span>Work Code:-</span><input aria-label="Work Code"></div></td></tr>
+<tr><td><div class="line"><span>रोजगार सेवक / Attandance taker:-</span><input aria-label="रोजगार सेवक"></div></td></tr>
+<tr><td><div class="line"><span>युजर ID :-</span><input aria-label="युजर ID"></div></td></tr>
+<tr><td><div class="line"><span>Pass Word :-</span><input aria-label="Password"></div></td></tr>
+<tr><td><div class="line"><span>लाभार्थी फोटो :-</span><input aria-label="लाभार्थी फोटो तपशील"></div></td></tr>
+<tr><td><div class="line"><span>Latitude :</span><input aria-label="Latitude"></div></td></tr>
+<tr><td><div class="line"><span>Longitude :</span><input aria-label="Longitude"></div></td></tr>
+</tbody>
+</table>
 
-  <div class="info-grid">
-    <div class="field">
-      <label>गावाचे नाव</label>
-      <input type="text" placeholder="गाव, तालुका, जिल्हा">
-    </div>
+<div class="photos">
+  <div class="photo-row" id="row1"></div>
+  <div class="names" id="names1"></div>
+  <div class="photo-row" id="row2"></div>
+  <div class="names" id="names2"></div>
+</div>
 
-    <div class="field">
-      <label>लाभार्थ्याचे नाव</label>
-      <input type="text" placeholder="पूर्ण नाव">
-    </div>
+<div class="group-title">ग्रुप फोटो</div>
 
-    <div class="field">
-      <label>Work Code</label>
-      <input type="text" placeholder="Work Code">
-    </div>
+<label class="group" id="groupBox" for="groupUpload">
+  <span class="hint">ग्रुप फोटो अपलोड करण्यासाठी क्लिक करा</span>
+  <input class="file" id="groupUpload" type="file" accept="image/*">
+</label>
 
-    <div class="field">
-      <label>रोजगार सेवक / Attendance Taker</label>
-      <input type="text" placeholder="नाव">
-    </div>
-
-    <div class="field">
-      <label>User ID</label>
-      <input type="text" placeholder="User ID">
-    </div>
-
-    <div class="field">
-      <label>Password</label>
-      <input type="text" placeholder="Password">
-    </div>
-
-    <div class="field">
-      <label>Latitude</label>
-      <input type="text" placeholder="Latitude">
-    </div>
-
-    <div class="field">
-      <label>Longitude</label>
-      <input type="text" placeholder="Longitude">
-    </div>
-  </div>
-
-  <div class="section-title">लाभार्थी / कुटुंब सदस्यांचे फोटो व नावे</div>
-
-  <div class="members" id="members">
-
-    <!-- प्रत्येक सदस्याचा फोटो व नावाचा बॉक्स -->
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-    <div class="member">
-      <div class="photo-box">
-        <span class="placeholder">फोटो अपलोड करा</span>
-      </div>
-      <input class="upload-control" type="file" accept="image/*"
-             onchange="loadPhoto(this, this.parentElement.querySelector('.photo-box'))">
-      <input class="name" type="text" placeholder="येथे नाव लिहा">
-    </div>
-
-  </div>
-
-  <div class="section-title">ग्रुप फोटो</div>
-
-  <div class="group-photo" id="groupPhoto">
-    <span class="placeholder">येथे ग्रुप फोटो अपलोड करा</span>
-  </div>
-
-  <input class="upload-control" type="file" accept="image/*"
-         onchange="loadPhoto(this, document.getElementById('groupPhoto'))">
-
-  <div class="notes">
-    <div class="section-title">अतिरिक्त माहिती / टिपण</div>
-    <textarea placeholder="येथे आवश्यक माहिती टाइप करा..."></textarea>
-  </div>
-
-  <div class="signatures">
-    <div class="signature">लाभार्थ्याची सही</div>
-    <div class="signature">रोजगार सेवक / Attendance Taker</div>
-  </div>
-
-  <div class="footer">लाभार्थी माहिती फॉर्म</div>
+<div class="signatures">
+  <div><input aria-label="लाभार्थी सही" placeholder="लाभार्थी सही"></div>
+  <div><input aria-label="रोजगार सेवक सही" placeholder="रोजगार सेवक / Attandance Takar"></div>
+</div>
 
 </main>
 
 <script>
-function loadPhoto(input, box) {
-  const file = input.files && input.files[0];
-  if (!file) return;
+function createPerson(rowId,nameId,index){
+  const person=document.createElement('div');
+  person.className='person';
 
-  if (!file.type.startsWith("image/")) {
-    alert("कृपया फोटो फाइल निवडा.");
-    input.value = "";
+  const box=document.createElement('label');
+  box.className='photo';
+  box.htmlFor='personFile'+index;
+
+  const hint=document.createElement('span');
+  hint.className='hint';
+  hint.textContent='फोटो अपलोड';
+  box.appendChild(hint);
+
+  const file=document.createElement('input');
+  file.type='file';
+  file.accept='image/*';
+  file.className='file screen-only';
+  file.id='personFile'+index;
+  file.addEventListener('change',()=>{
+    if(file.files && file.files[0]){
+      showImage(file.files[0],box);
+    }
+  });
+
+  person.append(box,file);
+  document.getElementById(rowId).appendChild(person);
+
+  const name=document.createElement('input');
+  name.type='text';
+  name.placeholder='नाव';
+  name.setAttribute('aria-label','सदस्य '+index+' नाव');
+  document.getElementById(nameId).appendChild(name);
+}
+
+function showImage(file,box){
+  if(!file.type.startsWith('image/')){
+    alert('कृपया फोटो निवडा.');
     return;
   }
-
-  const reader = new FileReader();
-
-  reader.onload = function(event) {
-    box.replaceChildren();
-
-    const img = document.createElement("img");
-    img.src = event.target.result;
-    img.alt = "अपलोड केलेला फोटो";
-
-    box.appendChild(img);
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const img=document.createElement('img');
+    img.src=reader.result;
+    img.alt='अपलोड केलेला फोटो';
+    box.replaceChildren(img);
   };
-
   reader.readAsDataURL(file);
 }
 
-function addMember() {
-  const member = document.createElement("div");
-  member.className = "member";
+for(let i=1;i<=5;i++) createPerson('row1','names1',i);
+for(let i=6;i<=10;i++) createPerson('row2','names2',i);
 
-  const box = document.createElement("div");
-  box.className = "photo-box";
+document.getElementById('groupUpload').addEventListener('change',function(){
+  if(this.files && this.files[0]){
+    showImage(this.files[0],document.getElementById('groupBox'));
+  }
+});
 
-  const placeholder = document.createElement("span");
-  placeholder.className = "placeholder";
-  placeholder.textContent = "फोटो अपलोड करा";
-  box.appendChild(placeholder);
+function resetForm(){
+  if(!confirm('सर्व माहिती, नावे आणि फोटो रिकामे करायचे आहेत?')) return;
+  document.querySelectorAll('.info input,.names input,.signatures input')
+    .forEach(el=>el.value='');
 
-  const upload = document.createElement("input");
-  upload.type = "file";
-  upload.accept = "image/*";
-  upload.className = "upload-control";
-  upload.addEventListener("change", function() {
-    loadPhoto(upload, box);
-  });
+  document.querySelectorAll('.person input[type=file]')
+    .forEach(el=>el.value='');
 
-  const name = document.createElement("input");
-  name.type = "text";
-  name.className = "name";
-  name.placeholder = "येथे नाव लिहा";
-
-  member.append(box, upload, name);
-  document.getElementById("members").appendChild(member);
-}
-
-function resetForm() {
-  if (!confirm("सर्व माहिती आणि फोटो काढून टाकायचे आहेत का?")) return;
-
-  document.querySelectorAll(
-    '#formSheet input[type="text"], #formSheet textarea'
-  ).forEach(input => input.value = "");
-
-  document.querySelectorAll(
-    '#formSheet input[type="file"]'
-  ).forEach(input => input.value = "");
-
-  document.querySelectorAll(
-    '#formSheet .photo-box, #formSheet .group-photo'
-  ).forEach(box => {
+  document.querySelectorAll('.person .photo').forEach(box=>{
     box.replaceChildren();
-
-    const placeholder = document.createElement("span");
-    placeholder.className = "placeholder";
-    placeholder.textContent = box.classList.contains("group-photo")
-      ? "येथे ग्रुप फोटो अपलोड करा"
-      : "फोटो अपलोड करा";
-
-    box.appendChild(placeholder);
+    const hint=document.createElement('span');
+    hint.className='hint';
+    hint.textContent='फोटो अपलोड';
+    box.appendChild(hint);
   });
 
-  document.querySelectorAll('#members .member').forEach((member, index) => {
-    if (index >= 10) member.remove();
-  });
+  const group=document.getElementById('groupBox');
+  group.replaceChildren();
+  const hint=document.createElement('span');
+  hint.className='hint';
+  hint.textContent='ग्रुप फोटो अपलोड करण्यासाठी क्लिक करा';
+  group.appendChild(hint);
+  document.getElementById('groupUpload').value='';
 }
 </script>
-
 </body>
 </html>
